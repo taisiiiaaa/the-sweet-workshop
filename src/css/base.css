@@ -1,13 +1,11 @@
 :root {
-  /* font-family: Inter, Avenir, Helvetica, Arial, sans-serif; */
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  font-size: 16px;
-  line-height: 1.5;
+  font-family: 'Work Sans', sans-serif;
   font-weight: 400;
+  font-size: 18px;
+  line-height: 1.5;
 
-  color: #242424;
-  background-color: rgba(255, 255, 255, 0.87);
+  color: #080c0c;
+  background-color: #f5fdfd;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -17,16 +15,5 @@
 }
 
 body {
-  display: flex;
-  flex-direction: column;
-  min-width: 100vw;
-  min-height: 100vh;
   margin: 0;
-}
-
-main {
-  flex-grow: 1;
-}
-main:has(.back-link) {
-  text-align: center;
 }

@@ -1,3 +1,13 @@
+html {
+  scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 h1,
 h2,
 h3,
@@ -29,6 +39,6 @@ button {
 
 img {
   display: block;
-  max-width: 100%;
   height: auto;
+  max-width: 100%;
 }
