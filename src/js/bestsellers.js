@@ -30,7 +30,7 @@ const DEMO_PRODUCTS = [
   },
 ];
 
-// СЛАЙДЕР 
+
 class BestsellersSlider {
   constructor(data) {
     this.data = data;
@@ -199,7 +199,7 @@ async function loadBestsellers() {
 
     const data = await response.json();
 
-    // Дані лежать у data.desserts
+
     const desserts = data.desserts || data;
 
     if (!Array.isArray(desserts) || desserts.length === 0) {

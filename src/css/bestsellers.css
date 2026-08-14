@@ -52,13 +52,11 @@
     object-fit: cover;
     display: block;
     border-radius: 12px;
-    /* щоб картинка теж була заокруглена */
     background: #f0f0f0;
 }
 
 .dessert-card__content {
     padding: 16px 0 0;
-    /* відступ тільки зверху від картинки */
     display: flex;
     flex-direction: column;
     flex-grow: 1;
@@ -130,7 +128,6 @@
     transition: stroke 0.25s ease;
 }
 
-/* ===== Навігація ===== */
 .bestsellers__nav {
     display: flex;
     align-items: center;
@@ -200,7 +197,7 @@
     transition: stroke 0.25s ease;
 }
 
-/* ===== Адаптив ===== */
+
 @media (max-width: 1024px) {
     .bestsellers {
         padding: 40px 40px 48px;
