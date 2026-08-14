@@ -1,3 +1,60 @@
 <div class="order-modal" data-order>
-  <div class="container"></div>
+  <div class="order-modal__container">
+    <button
+      class="order-modal__close"
+      type="button"
+      aria-label="Закрити модальне вікно"
+    >
+      ×
+    </button>
+
+    <h2 class="order-modal__title">Оформлення замовлення</h2>
+
+    <form class="order-modal__form">
+      <div class="order-modal__field">
+        <label class="order-modal__label" for="order-name">
+          Ім’я*
+        </label>
+        <input
+          class="order-modal__input"
+          id="order-name"
+          type="text"
+          name="name"
+          placeholder="Вікторія"
+          required
+        />
+      </div>
+
+      <div class="order-modal__field">
+        <label class="order-modal__label" for="order-phone">
+          Телефон*
+        </label>
+        <input
+          class="order-modal__input"
+          id="order-phone"
+          type="tel"
+          name="phone"
+          placeholder="38 0__ ______"
+          required
+        />
+      </div>
+
+      <div class="order-modal__field">
+        <label class="order-modal__label" for="order-comment">
+          Коментар*
+        </label>
+        <textarea
+          class="order-modal__textarea"
+          id="order-comment"
+          name="comment"
+          placeholder="Ваш коментар"
+          required
+        ></textarea>
+      </div>
+
+      <button class="order-modal__submit" type="submit">
+        Надіслати заявку
+      </button>
+    </form>
+  </div>
 </div>
