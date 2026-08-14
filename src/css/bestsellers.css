@@ -1,0 +1,231 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+    background: #f5f5f5;
+    color: #1a1a1a;
+    padding: 40px 0;
+}
+
+.bestsellers {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.bestsellers__title {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 32px;
+    color: #1a1a1a;
+}
+
+.bestsellers__slider-wrapper {
+    position: relative;
+}
+
+.bestsellers__track-container {
+    overflow: hidden;
+    border-radius: 16px;
+}
+
+.bestsellers__track {
+    display: flex;
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    gap: 24px;
+}
+
+.dessert-card {
+    flex: 0 0 calc((100% - 48px) / 3);
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.3s ease;
+}
+
+.dessert-card:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.dessert-card__image {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+    background: #f0f0f0;
+}
+
+.dessert-card__content {
+    padding: 20px 20px 16px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.dessert-card__category {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 6px;
+    letter-spacing: 0.02em;
+}
+
+.dessert-card__title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    line-height: 1.3;
+}
+
+.dessert-card__desc {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.45;
+    margin-bottom: 16px;
+    flex-grow: 1;
+}
+
+.dessert-card__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+}
+
+.dessert-card__price {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.dessert-card__btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid #e0e0e0;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    flex-shrink: 0;
+}
+
+.dessert-card__btn:hover {
+    background: #1a1a1a;
+    border-color: #1a1a1a;
+}
+
+.dessert-card__btn:hover svg {
+    stroke: #fff;
+}
+
+.dessert-card__btn svg {
+    width: 18px;
+    height: 18px;
+    stroke: #1a1a1a;
+    transition: stroke 0.25s ease;
+}
+
+.bestsellers__nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 28px;
+}
+
+.bestsellers__dots {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.bestsellers__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #d0d0d0;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    padding: 0;
+}
+
+.bestsellers__dot.active {
+    background: #1a1a1a;
+    width: 24px;
+    border-radius: 4px;
+}
+
+.bestsellers__arrows {
+    display: flex;
+    gap: 12px;
+}
+
+.bestsellers__arrow {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid #e0e0e0;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.bestsellers__arrow:hover:not(:disabled) {
+    background: #1a1a1a;
+    border-color: #1a1a1a;
+}
+
+.bestsellers__arrow:hover:not(:disabled) svg {
+    stroke: #fff;
+}
+
+.bestsellers__arrow:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+.bestsellers__arrow svg {
+    width: 20px;
+    height: 20px;
+    stroke: #1a1a1a;
+    transition: stroke 0.25s ease;
+}
+
+@media (max-width: 1024px) {
+    .dessert-card {
+        flex: 0 0 calc((100% - 24px) / 2);
+        
+    }
+}
+
+@media (max-width: 640px) {
+    .bestsellers__title {
+        font-size: 26px;
+        margin-bottom: 24px;
+    }
+
+    .dessert-card {
+        flex: 0 0 100%;
+        /* 1 картка */
+    }
+
+    .dessert-card__image {
+        height: 200px;
+    }
+
+    .bestsellers__nav {
+        margin-top: 24px;
+    }
+}
