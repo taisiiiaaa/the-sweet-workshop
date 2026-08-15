@@ -1,0 +1,116 @@
+.feedback .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-block: 64px;
+}
+
+.feedback-title {
+  padding-bottom: 24px;
+  font-family: 'Comfortaa', sans-serif;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 120%;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: rgb(8, 12, 12);
+}
+
+.feedback-subtitle {
+  padding-bottom: 40px;
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 150%;
+  text-align: center;
+  color: rgb(8, 12, 12);
+}
+
+/* Контейнер слайдера */
+.swiper {
+  width: 100%;
+  height: 288px;
+  position: relative;
+  padding-bottom: 80px !important;
+}
+
+/* Картка */
+.swiper-slide {
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 18px;
+  background: rgb(245, 253, 253);
+  color: rgb(8, 12, 12);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid rgb(8, 12, 12);
+  border-radius: 16px;
+  padding: 32px;
+  height: 208px;
+  max-width: 335px;
+}
+
+/* Прибираємо стандартні стрілки Swiper */
+.swiper-button::after {
+  display: none !important;
+}
+
+/* Обидві кнопки */
+.swiper-button {
+  width: 48px !important;
+  height: 48px !important;
+  top: auto !important;
+  bottom: 0 !important;
+  margin: 0 !important;
+  border: 2px solid rgb(8, 12, 12);
+  border-radius: 100px;
+  z-index: 10;
+}
+
+/* Ліва стрілка */
+.swiper-button-prev {
+  left: auto !important;
+  right: 64px !important;
+}
+
+/* Права стрілка */
+.swiper-button-next {
+  right: 0 !important;
+}
+
+/* SVG стрілок */
+.swiper-arrow-icon {
+  width: 24px !important;
+  height: 24px !important;
+  fill: #080c0c;
+}
+
+/* ПАГІНАЦІЯ */
+.swiper-pagination {
+  position: absolute !important;
+  left: 60px !important;
+  right: auto !important;
+  bottom: 20px !important;
+  width: auto !important;
+  height: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  z-index: 10;
+}
+
+/* Крапки */
+.swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  margin: 0 !important;
+  opacity: 1;
+  background: rgb(8, 12, 12) !important;
+}
+
+/* Активна крапка */
+.swiper-pagination-bullet-active {
+  background: rgb(8, 12, 12) !important;
+}
