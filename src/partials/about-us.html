@@ -9,120 +9,130 @@
     </p>
 
     <div class="about-us__slider">
-      <button class="about-us__btn about-us__btn--prev" type="button" aria-label="Попереднє зображення">
+      <button
+        class="about-us__btn about-us__btn--prev"
+        type="button"
+        aria-label="previous image"
+      >
         <svg width="24" height="24">
           <use href="./images/icons.svg#arrow-left"></use>
         </svg>
       </button>
 
-      <ul class="about-us__gallery">
-        <li class="about-us__gallery-item">
-          <picture>
-            <source
-              media="(min-width: 1440px)"
-              srcset="
-                ./images/about-us/desktop/about-us-desktop-1.webp 1x,
-                ./images/about-us/desktop/about-us-desktop-1@2x.webp 2x
-              "
-            />
-            <source
-              media="(min-width: 768px)"
-              srcset="
-                ./images/about-us/tablet/about-us-tablet-1.webp 1x,
-                ./images/about-us/tablet/about-us-tablet-1@2x.webp 2x
-              "
-            />
-            <img
-              class="about-us__img"
-              src="./images/about-us/mobile/about-us-mobile-1.webp"
-              srcset="./images/about-us/mobile/about-us-mobile-1@2x.webp 2x"
-              alt="the pastry chef is preparing pastries"
-              width="335"
-              height="248"
-            />
-          </picture>
-        </li>
-        <li class="about-us__gallery-item">
-          <picture>
-            <source
-              media="(min-width: 1440px)"
-              srcset="
-                ./images/about-us/desktop/about-us-desktop-2.webp 1x,
-                ./images/about-us/desktop/about-us-desktop-2@2x.webp 2x
-              "
-            />
-            <source
-              media="(min-width: 768px)"
-              srcset="
-                ./images/about-us/tablet/about-us-tablet-2.webp 1x,
-                ./images/about-us/tablet/about-us-tablet-2@2x.webp 2x
-              "
-            />
-            <img
-              class="about-us__img"
-              src="./images/about-us/mobile/about-us-mobile-2.webp"
-              srcset="./images/about-us/mobile/about-us-mobile-2@2x.webp 2x"
-              alt="the team of pastry chefs is consulting"
-              width="335"
-              height="248"
-            />
-          </picture>
-        </li>
-        <li class="about-us__gallery-item">
-          <picture>
-            <source
-              media="(min-width: 1440px)"
-              srcset="
-                ./images/about-us/desktop/about-us-desktop-3.webp 1x,
-                ./images/about-us/desktop/about-us-desktop-3@2x.webp 2x
-              "
-            />
-            <source
-              media="(min-width: 768px)"
-              srcset="
-                ./images/about-us/tablet/about-us-tablet-3.webp 1x,
-                ./images/about-us/tablet/about-us-tablet-3@2x.webp 2x
-              "
-            />
-            <img
-              class="about-us__img"
-              src="./images/about-us/mobile/about-us-mobile-3.webp"
-              srcset="./images/about-us/mobile/about-us-mobile-3@2x.webp 2x"
-              alt="confectionery shop window"
-              width="335"
-              height="248"
-            />
-          </picture>
-        </li>
-        <li class="about-us__gallery-item">
-          <picture>
-            <source
-              media="(min-width: 1440px)"
-              srcset="
-                ./images/about-us/desktop/about-us-desktop-4.webp 1x,
-                ./images/about-us/desktop/about-us-desktop-4@2x.webp 2x
-              "
-            />
-            <source
-              media="(min-width: 768px)"
-              srcset="
-                ./images/about-us/tablet/about-us-tablet-4.webp 1x,
-                ./images/about-us/tablet/about-us-tablet-4@2x.webp 2x
-              "
-            />
-            <img
-              class="about-us__img"
-              src="./images/about-us/mobile/about-us-mobile-4.webp"
-              srcset="./images/about-us/mobile/about-us-mobile-4@2x.webp 2x"
-              alt="a woman is savoring a dessert"
-              width="335"
-              height="248"
-            />
-          </picture>
-        </li>
-      </ul>
+      <div class="swiper about-us__swiper">
+        <ul class="swiper-wrapper about-us__gallery">
+          <li class="swiper-slide about-us__gallery-item">
+            <picture>
+              <source
+                media="(min-width: 1440px)"
+                srcset="
+                  ./images/about-us/desktop/about-us-desktop-1.webp    1x,
+                  ./images/about-us/desktop/about-us-desktop-1@2x.webp 2x
+                "
+              />
+              <source
+                media="(min-width: 768px)"
+                srcset="
+                  ./images/about-us/tablet/about-us-tablet-1.webp    1x,
+                  ./images/about-us/tablet/about-us-tablet-1@2x.webp 2x
+                "
+              />
+              <img
+                class="about-us__img"
+                src="./images/about-us/mobile/about-us-mobile-1.webp"
+                srcset="./images/about-us/mobile/about-us-mobile-1@2x.webp 2x"
+                alt="the pastry chef is preparing pastries"
+                width="335"
+                height="248"
+              />
+            </picture>
+          </li>
+          <li class="swiper-slide about-us__gallery-item">
+            <picture>
+              <source
+                media="(min-width: 1440px)"
+                srcset="
+                  ./images/about-us/desktop/about-us-desktop-2.webp    1x,
+                  ./images/about-us/desktop/about-us-desktop-2@2x.webp 2x
+                "
+              />
+              <source
+                media="(min-width: 768px)"
+                srcset="
+                  ./images/about-us/tablet/about-us-tablet-2.webp    1x,
+                  ./images/about-us/tablet/about-us-tablet-2@2x.webp 2x
+                "
+              />
+              <img
+                class="about-us__img"
+                src="./images/about-us/mobile/about-us-mobile-2.webp"
+                srcset="./images/about-us/mobile/about-us-mobile-2@2x.webp 2x"
+                alt="the team of pastry chefs is consulting"
+                width="335"
+                height="248"
+              />
+            </picture>
+          </li>
+          <li class="swiper-slide about-us__gallery-item">
+            <picture>
+              <source
+                media="(min-width: 1440px)"
+                srcset="
+                  ./images/about-us/desktop/about-us-desktop-3.webp    1x,
+                  ./images/about-us/desktop/about-us-desktop-3@2x.webp 2x
+                "
+              />
+              <source
+                media="(min-width: 768px)"
+                srcset="
+                  ./images/about-us/tablet/about-us-tablet-3.webp    1x,
+                  ./images/about-us/tablet/about-us-tablet-3@2x.webp 2x
+                "
+              />
+              <img
+                class="about-us__img"
+                src="./images/about-us/mobile/about-us-mobile-3.webp"
+                srcset="./images/about-us/mobile/about-us-mobile-3@2x.webp 2x"
+                alt="confectionery shop window"
+                width="335"
+                height="248"
+              />
+            </picture>
+          </li>
+          <li class="swiper-slide about-us__gallery-item">
+            <picture>
+              <source
+                media="(min-width: 1440px)"
+                srcset="
+                  ./images/about-us/desktop/about-us-desktop-4.webp    1x,
+                  ./images/about-us/desktop/about-us-desktop-4@2x.webp 2x
+                "
+              />
+              <source
+                media="(min-width: 768px)"
+                srcset="
+                  ./images/about-us/tablet/about-us-tablet-4.webp    1x,
+                  ./images/about-us/tablet/about-us-tablet-4@2x.webp 2x
+                "
+              />
+              <img
+                class="about-us__img"
+                src="./images/about-us/mobile/about-us-mobile-4.webp"
+                srcset="./images/about-us/mobile/about-us-mobile-4@2x.webp 2x"
+                alt="a woman is savoring a dessert"
+                width="335"
+                height="248"
+              />
+            </picture>
+          </li>
+        </ul>
+      </div>
 
-      <button class="about-us__btn about-us__btn--next" type="button" aria-label="Наступне зображення">
+      <button
+        class="about-us__btn about-us__btn--next"
+        type="button"
+        aria-label="next image"
+      >
         <svg width="24" height="24">
           <use href="./images/icons.svg#arrow-right"></use>
         </svg>

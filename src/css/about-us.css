@@ -62,17 +62,19 @@
   .about-us__slider {
     position: relative;
     margin-top: 40px;
+    overflow: visible;
+  }
+
+  .about-us__swiper {
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
   }
 
   .about-us__gallery {
     margin-top: 0;
     flex-direction: row;
-    flex-wrap: nowrap;
-    overflow: hidden;
-  }
-
-  .about-us__gallery-item:nth-child(n + 3) {
-    display: none;
+    gap: 0;
   }
 
   .about-us__img {
@@ -94,16 +96,15 @@
     border-radius: 100px;
     background: #f5fdfd;
     cursor: pointer;
-    z-index: 1;
+    z-index: 10;
     transition: background 250ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .about-us__btn--prev {
     left: -27px;
   }
-
   .about-us__btn--next {
-    right: -27px;
+    right: -23px;
   }
 
   .about-us__btn:hover {
@@ -121,7 +122,7 @@
   .about-us__btn:disabled {
     background: #f5fdfd;
     opacity: 0.2;
-    cursor: not-allowed;
+    cursor: default;
   }
 
   .about-us__pagination {
@@ -141,6 +142,11 @@
     background-color: #080c0c;
     opacity: 0.2;
     cursor: pointer;
+    transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .about-us__pagination-item:hover {
+    opacity: 0.5;
   }
 
   .about-us__pagination-item--active {
