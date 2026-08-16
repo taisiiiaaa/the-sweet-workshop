@@ -106,8 +106,22 @@
 }
 
 .rating {
+  /* padding-left: 32px; */
+  width: 116px;
 }
 
-.rating svg {
+.star-svg {
+  width: 100% !important;
+  height: 100% !important;
   fill: rgb(8, 12, 12) !important;
+}
+
+.star {
+  width: 20px !important;
+  height: 18.89px !important;
+}
+
+.star-container {
+  margin-inline: 0px !important;
+  gap: 4px;
 }

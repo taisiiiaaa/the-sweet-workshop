@@ -9,7 +9,7 @@ function createSlides(feedbacks) {
       const starIcons = ['star-filled', 'star-half', 'star-empty']
         .map(
           iconType =>
-            `<svg class="${iconType}"><use href="./images/star-rating.icons.svg#${iconType}"></use></svg>`
+            `<svg class="${iconType}"><use class="star-svg" href="./images/star-rating.icons.svg#${iconType}"></use></svg>`
         )
         .join('');
 
