@@ -26,7 +26,6 @@
   color: rgb(8, 12, 12);
 }
 
-/* Контейнер слайдера */
 .swiper {
   width: 100%;
   height: 288px;
@@ -34,10 +33,9 @@
   padding-bottom: 80px !important;
 }
 
-/* Картка */
 .swiper-slide {
   box-sizing: border-box;
-  text-align: center;
+  text-align: left;
   font-size: 18px;
   background: rgb(245, 253, 253);
   color: rgb(8, 12, 12);
@@ -51,12 +49,10 @@
   max-width: 335px;
 }
 
-/* Прибираємо стандартні стрілки Swiper */
 .swiper-button::after {
   display: none !important;
 }
 
-/* Обидві кнопки */
 .swiper-button {
   width: 48px !important;
   height: 48px !important;
@@ -68,25 +64,21 @@
   z-index: 10;
 }
 
-/* Ліва стрілка */
 .swiper-button-prev {
   left: auto !important;
   right: 64px !important;
 }
 
-/* Права стрілка */
 .swiper-button-next {
   right: 0 !important;
 }
 
-/* SVG стрілок */
 .swiper-arrow-icon {
   width: 24px !important;
   height: 24px !important;
   fill: #080c0c;
 }
 
-/* ПАГІНАЦІЯ */
 .swiper-pagination {
   position: absolute !important;
   left: 60px !important;
@@ -101,7 +93,6 @@
   z-index: 10;
 }
 
-/* Крапки */
 .swiper-pagination-bullet {
   width: 8px;
   height: 8px;
@@ -110,7 +101,13 @@
   background: rgb(8, 12, 12) !important;
 }
 
-/* Активна крапка */
 .swiper-pagination-bullet-active {
   background: rgb(8, 12, 12) !important;
+}
+
+.rating {
+}
+
+.rating svg {
+  fill: rgb(8, 12, 12) !important;
 }

@@ -1,5 +1,6 @@
 import getFeedbacks from './api/feedback-api';
 import createSlides from './feedback-render';
+import Swiper from 'swiper/bundle';
 
 const SWIPER = new Swiper('.mySwiper', {
   slidesPerView: 1,
