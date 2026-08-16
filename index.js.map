@@ -1,1 +1,1 @@
-{"version":3,"file":"index.js","sources":[],"sourcesContent":[],"names":[],"mappings":""}
+{"version":3,"file":"index.js","sources":["../src/js/faq.js"],"sourcesContent":["import Accordion from 'accordion-js';\n\nconst accordion = new Accordion('.accordion-container', {\n  duration: 400,\n  showMultiple: false,\n});\n"],"names":["Accordion"],"mappings":"svBAEkB,IAAIA,EAAU,uBAAwB,CACtD,SAAU,IACV,aAAc,EAChB,CAAC"}
