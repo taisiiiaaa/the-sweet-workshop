@@ -1,35 +1,39 @@
 function renderSlides(feedbacks) {
-  const markup = feedbacks
+  return feedbacks
     .map(({ rate, description, author }) => {
       const ratingValue = Math.floor(rate);
       const hasHalf = rate % 1 !== 0;
 
-      const starIcons = ['star-filled', 'star-half', 'star-empty']
-        .map(
-          iconType =>
-            `<svg class="${iconType}"><use class="star-svg" href="./images/star-rating.icons.svg#${iconType}"></use></svg>`
-        )
-        .join('');
+      const stars = Array.from({ length: 5 }, (_, index) => {
+        let iconType = 'star-empty';
 
-      const starMarkup = `<div class="star">${starIcons}</div>`;
+        if (index < ratingValue) {
+          iconType = 'star-filled';
+        } else if (index === ratingValue && hasHalf) {
+          iconType = 'star-half';
+        }
+
+        return `
+          <svg class="star">
+            <use href="./images/star-rating.icons.svg#${iconType}"></use>
+          </svg>
+        `;
+      }).join('');
 
       return `
-      <li class="swiper-slide">
-        <div class="rating large star-icon  value-${ratingValue} ${
-          hasHalf ? 'half' : ''
-        } label-hidden">
-            <div class="label-value"></div>
+        <li class="swiper-slide">
+          <div class="rating">
             <div class="star-container">
-                ${starMarkup.repeat(5)}
+              ${stars}
             </div>
-        </div>
-            <p class="feedback-description">"${description}"</p>
-            <p class="feedback-author">${author}</p>
-      </li>`;
+          </div>
+
+          <p class="feedback-description">"${description}"</p>
+          <p class="feedback-author">${author}</p>
+        </li>
+      `;
     })
     .join('');
-
-  return markup;
 }
 
 export default renderSlides;
