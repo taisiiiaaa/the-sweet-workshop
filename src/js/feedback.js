@@ -6,7 +6,9 @@ import Swiper from 'swiper/bundle';
 const loader = document.querySelector('#loader');
 
 function createSwiper(feedback) {
-  const swiperWrapperElement = document.querySelector('.swiper-wrapper');
+  const swiperWrapperElement = document.querySelector(
+    '.feedback-swiper .swiper-wrapper'
+  );
   swiperWrapperElement.innerHTML = renderSlides(feedback);
   loader.classList.remove('loader');
   new Swiper('.mySwiper', {
