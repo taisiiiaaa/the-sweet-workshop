@@ -1,7 +1,5 @@
-const SWIPER = document.querySelector('.swiper-wrapper');
-
-function createSlides(feedbacks) {
-  const MARKUP = feedbacks
+function renderSlides(feedbacks) {
+  const markup = feedbacks
     .map(({ rate, description, author }) => {
       const ratingValue = Math.floor(rate);
       const hasHalf = rate % 1 !== 0;
@@ -25,13 +23,13 @@ function createSlides(feedbacks) {
                 ${starMarkup.repeat(5)}
             </div>
         </div>
-            <p>${description}</p>
-            <p>${author}</p>
+            <p class="feedback-description">"${description}"</p>
+            <p class="feedback-author">${author}</p>
       </li>`;
     })
     .join('');
 
-  SWIPER.innerHTML = MARKUP;
+  return markup;
 }
 
-export default createSlides;
+export default renderSlides;

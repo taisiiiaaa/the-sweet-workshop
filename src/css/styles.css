@@ -16,5 +16,5 @@
 @import url('./footer.css');
 @import url('./navbar.css');
 
-@import url('css-star-rating/css/star-rating.css'); /* стилі зірочок */
-@import url('swiper/css/bundle'); /* стилі свайпера */
+@import url('css-star-rating/css/star-rating.css');
+@import url('swiper/css/bundle');

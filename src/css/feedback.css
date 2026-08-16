@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 571px;
   padding-block: 64px;
 }
 
@@ -26,27 +27,31 @@
   color: rgb(8, 12, 12);
 }
 
+.feedback-swiper {
+  position: relative;
+  width: 100%;
+}
+
 .swiper {
   width: 100%;
-  height: 288px;
+  height: 309px;
   position: relative;
   padding-bottom: 80px !important;
 }
 
 .swiper-slide {
-  box-sizing: border-box;
+  display: flex !important;
+  flex-direction: column;
   text-align: left;
   font-size: 18px;
   background: rgb(245, 253, 253);
   color: rgb(8, 12, 12);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
+  align-items: flex-start;
   border: 2px solid rgb(8, 12, 12);
   border-radius: 16px;
   padding: 32px;
   height: 208px;
-  max-width: 335px;
 }
 
 .swiper-button::after {
@@ -61,7 +66,8 @@
   margin: 0 !important;
   border: 2px solid rgb(8, 12, 12);
   border-radius: 100px;
-  z-index: 10;
+  background-color: rgb(245, 253, 253);
+  z-index: 999 !important;
 }
 
 .swiper-button-prev {
@@ -106,7 +112,6 @@
 }
 
 .rating {
-  /* padding-left: 32px; */
   width: 116px;
 }
 
@@ -118,10 +123,67 @@
 
 .star {
   width: 20px !important;
-  height: 18.89px !important;
+  height: 18px !important;
 }
 
 .star-container {
   margin-inline: 0px !important;
   gap: 4px;
+}
+
+.feedback-description {
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 150%;
+  color: rgb(8, 12, 12);
+}
+
+.feedback-author {
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
+  color: rgb(8, 12, 12);
+}
+
+@media only screen and (min-width: 768px) {
+  .feedback-swiper {
+    box-sizing: border-box;
+  }
+
+  .swiper-slide {
+    padding: 16px !important;
+  }
+
+  .swiper-button {
+    /* top: 107px !important; */
+    top: calc((100% - 80px) / 2) !important;
+    bottom: auto !important;
+    transform: translateY(-50%);
+  }
+
+  .swiper-button-prev {
+    left: -28px !important;
+    right: auto !important;
+  }
+
+  .swiper-button-next {
+    right: -28px !important;
+  }
+
+  .swiper-pagination {
+    left: 337px !important;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .swiper-slide {
+    padding: 32px !important;
+  }
+
+  .swiper-pagination {
+    left: 50% !important;
+    transform: translateX(-50%);
+  }
 }

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 async function getFeedbacks() {
-  const RESPONSE = await axios.get(
+  const response = await axios.get(
     'https://deserts-store.b.goit.study/api/feedbacks',
     {
       params: {
@@ -10,7 +10,7 @@ async function getFeedbacks() {
       },
     }
   );
-  return RESPONSE.data.feedbacks;
+  return response.data.feedbacks;
 }
 
 export default getFeedbacks;
