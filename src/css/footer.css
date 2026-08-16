@@ -122,16 +122,30 @@
   }
 
   .footer__top {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
     gap: 32px;
   }
 
   .footer__nav {
+    width: 100%;
     flex-direction: column;
+    align-items: center;
     gap: 16px;
   }
 
+  .footer__socials {
+    justify-content: center;
+  }
   .footer__bottom {
+    width: 100%;
     margin-top: 32px;
     padding-top: 20px;
+    text-align: center;
+  }
+  .footer__bottom p {
+    width: 100%;
+    text-align: center;
   }
 }
