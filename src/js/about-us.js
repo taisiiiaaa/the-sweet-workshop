@@ -28,12 +28,10 @@ function initSwiper() {
     modules: [Navigation],
     slidesPerView: 2,
     spaceBetween: 16,
-    initialSlide: 0,
     speed: 600,
     cssEase: 'cubic-bezier(0.4, 0, 0.2, 1)',
     breakpoints: {
       1440: {
-        slidesPerView: 2,
         spaceBetween: 24,
       },
     },
