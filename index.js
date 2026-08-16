@@ -1,31 +1,31 @@
-import{a as v,A as w}from"./assets/vendor-DLewQupz.js";(function(){const t=document.createElement("link").relList;if(t&&t.supports&&t.supports("modulepreload"))return;for(const s of document.querySelectorAll('link[rel="modulepreload"]'))n(s);new MutationObserver(s=>{for(const o of s)if(o.type==="childList")for(const u of o.addedNodes)u.tagName==="LINK"&&u.rel==="modulepreload"&&n(u)}).observe(document,{childList:!0,subtree:!0});function r(s){const o={};return s.integrity&&(o.integrity=s.integrity),s.referrerPolicy&&(o.referrerPolicy=s.referrerPolicy),s.crossOrigin==="use-credentials"?o.credentials="include":s.crossOrigin==="anonymous"?o.credentials="omit":o.credentials="same-origin",o}function n(s){if(s.ep)return;s.ep=!0;const o=r(s);fetch(s.href,o)}})();const $="https://deserts-store.b.goit.study/api";async function x(){const{data:e}=await v.get(`${$}/categories`);return e}async function C({page:e,limit:t,category:r}){const n={page:e,limit:t};r&&r!=="all"&&(n.category=r);const{data:s}=await v.get(`${$}/desserts`,{params:n});return s}const f=document.querySelector(".dessert-filters"),i=document.querySelector(".dessert-filters__list"),a=document.getElementById("dessert-dropdown-btn"),l=document.getElementById("selected-category-name"),d=document.querySelector(".dessert-gallery"),y=document.querySelector("#loader"),c=document.querySelector(".dessert-list__load-more-btn");let L="all",g=1;const m=8;async function E(){h(),p(),g=1,d&&(d.innerHTML="");try{const e=await C({page:g,limit:m,category:L});S(e.desserts||[]),e.totalItems>m?_():p()}catch(e){console.error(e)}finally{b()}}async function A(){g+=1,h(),p();try{const e=await C({page:g,limit:m,category:L}),t=e.desserts||[];S(t),(d?d.children.length:0)>=e.totalItems||t.length<m?p():_()}catch(e){console.error(e),_()}finally{b()}}async function M(){h();try{const e=await x();O(e),await E()}catch(e){console.error(e)}finally{b()}}function O(e){if(!i)return;let t=`
+import{a as $,S as O,N as T,A as k}from"./assets/vendor-BnfE_hCa.js";(function(){const t=document.createElement("link").relList;if(t&&t.supports&&t.supports("modulepreload"))return;for(const i of document.querySelectorAll('link[rel="modulepreload"]'))o(i);new MutationObserver(i=>{for(const r of i)if(r.type==="childList")for(const f of r.addedNodes)f.tagName==="LINK"&&f.rel==="modulepreload"&&o(f)}).observe(document,{childList:!0,subtree:!0});function s(i){const r={};return i.integrity&&(r.integrity=i.integrity),i.referrerPolicy&&(r.referrerPolicy=i.referrerPolicy),i.crossOrigin==="use-credentials"?r.credentials="include":i.crossOrigin==="anonymous"?r.credentials="omit":r.credentials="same-origin",r}function o(i){if(i.ep)return;i.ep=!0;const r=s(i);fetch(i.href,r)}})();const q="https://deserts-store.b.goit.study/api";async function D(){const{data:e}=await $.get(`${q}/categories`);return e}async function C({page:e,limit:t,category:s}){const o={page:e,limit:t};s&&s!=="all"&&(o.category=s);const{data:i}=await $.get(`${q}/desserts`,{params:o});return i}const p=document.querySelector(".dessert-filters"),n=document.querySelector(".dessert-filters__list"),c=document.getElementById("dessert-dropdown-btn"),d=document.getElementById("selected-category-name"),u=document.querySelector(".dessert-gallery"),y=document.querySelector("#loader"),l=document.querySelector(".dessert-list__load-more-btn");let h="all",m=1;const g=8;async function P(){v(),_(),m=1,u&&(u.innerHTML="");try{const e=await C({page:m,limit:g,category:h});B(e.desserts||[]),e.totalItems>g?b():_()}catch(e){console.error(e)}finally{w()}}async function R(){m+=1,v(),_();try{const e=await C({page:m,limit:g,category:h}),t=e.desserts||[];B(t),(u?u.children.length:0)>=e.totalItems||t.length<g?_():b()}catch(e){console.error(e),b()}finally{w()}}async function j(){v();try{const e=await D();H(e),await P()}catch(e){console.error(e)}finally{w()}}function H(e){if(!n)return;let t=`
       <li class="dessert-filters__item">
         <button type="button" class="dessert-filters__btn is-active" data-category="all">
         Всі десерти
       </button>
       </li>
-    `;t+=e.map(({_id:r,name:n})=>`
+    `;t+=e.map(({_id:s,name:o})=>`
         <li class="dessert-filters__item">
-          <button type="button" class="dessert-filters__btn" data-category="${r}">
-          ${n}
+          <button type="button" class="dessert-filters__btn" data-category="${s}">
+          ${o}
           </button>
         </li>
-      `).join(""),i.innerHTML=t}function S(e){if(!d)return;const t=e.map(({_id:r,name:n,description:s,price:o,category:{name:u},image:q})=>`
+      `).join(""),n.innerHTML=t}function B(e){if(!u)return;const t=e.map(({_id:s,name:o,description:i,price:r,category:{name:f},image:N})=>`
        <li class="gallery-list__product-item">
          <img 
           class="gallery-list__product-image"
-          src="${q}"
-          alt="${n}"
-          id="${r}"
+          src="${N}"
+          alt="${o}"
+          id="${s}"
           loading="lazy"
         />
-        <p class="gallery-list__product-category">${u}</p>
-        <h3 class="gallery-list__product-title">${n}</h3>
-        <p class="gallery-list__product-description">${s}</p>
+        <p class="gallery-list__product-category">${f}</p>
+        <h3 class="gallery-list__product-title">${o}</h3>
+        <p class="gallery-list__product-description">${i}</p>
         <div class="gallery-list__product-bottom">
-          <span class="gallery-list__product-price">${o} грн</span>
-          <button type="button" class="gallery-details-btn" data-id="${r}">↗</button>
+          <span class="gallery-list__product-price">${r} грн</span>
+          <button type="button" class="gallery-details-btn" data-id="${s}">↗</button>
         </div>
        </li>
-    `).join("");d.insertAdjacentHTML("beforeend",t)}f==null||f.addEventListener("click",e=>{const t=e.target.closest(".dessert-filters__btn");if(t){const r=i.querySelector(".dessert-filters__btn.is-active");r==null||r.classList.remove("is-active"),t.classList.add("is-active"),l&&(l.textContent=t.textContent.trim()),i.classList.remove("is-open"),a==null||a.classList.remove("is-open"),L=t.dataset.category,E();return}if(a!=null&&a.contains(e.target)){const r=i.classList.toggle("is-open");a.classList.toggle("is-open",r),l&&(l.textContent=r?"Виберіть категорію":i.querySelector(".dessert-filters__btn.is-active").textContent.trim())}});document.addEventListener("click",e=>{if(f&&!f.contains(e.target)&&(i==null||i.classList.remove("is-open"),l&&i)){const t=i.querySelector(".dessert-filters__btn.is-active");t&&(l.textContent=t.textContent.trim())}});c==null||c.addEventListener("click",A);function h(){y&&y.classList.remove("is-hidden")}function b(){y&&y.classList.add("is-hidden")}function _(){c&&c.classList.remove("is-hidden")}function p(){c&&c.classList.add("is-hidden")}M();new w(".accordion-container",{duration:400,showMultiple:!1});
+    `).join("");u.insertAdjacentHTML("beforeend",t)}p==null||p.addEventListener("click",e=>{const t=e.target.closest(".dessert-filters__btn");if(t){const s=n.querySelector(".dessert-filters__btn.is-active");s==null||s.classList.remove("is-active"),t.classList.add("is-active"),d&&(d.textContent=t.textContent.trim()),n.classList.remove("is-open"),c==null||c.classList.remove("is-open"),h=t.dataset.category,P();return}if(c!=null&&c.contains(e.target)){const s=n.classList.toggle("is-open");c.classList.toggle("is-open",s),d&&(d.textContent=s?"Виберіть категорію":n.querySelector(".dessert-filters__btn.is-active").textContent.trim())}});document.addEventListener("click",e=>{if(p&&!p.contains(e.target)&&(n==null||n.classList.remove("is-open"),d&&n)){const t=n.querySelector(".dessert-filters__btn.is-active");t&&(d.textContent=t.textContent.trim())}});l==null||l.addEventListener("click",R);function v(){y&&y.classList.remove("is-hidden")}function w(){y&&y.classList.add("is-hidden")}function b(){l&&l.classList.remove("is-hidden")}function _(){l&&l.classList.add("is-hidden")}j();const z=768,E=document.querySelector(".about-us__btn--prev"),S=document.querySelector(".about-us__btn--next"),A=document.querySelectorAll(".about-us__pagination-item");function L(e){A.forEach((t,s)=>{t.classList.toggle("about-us__pagination-item--active",s===e)})}function x(e){E.disabled=e.isBeginning,S.disabled=e.isEnd}let a=null;function I(){a||(a=new O(".about-us__swiper",{modules:[T],slidesPerView:2,spaceBetween:16,initialSlide:0,speed:600,cssEase:"cubic-bezier(0.4, 0, 0.2, 1)",breakpoints:{1440:{slidesPerView:2,spaceBetween:24}},on:{slideChange(e){L(e.activeIndex),x(e)},init(e){L(e.activeIndex),x(e)}}}),E.addEventListener("click",()=>a.slidePrev()),S.addEventListener("click",()=>a.slideNext()),A.forEach((e,t)=>{e.addEventListener("click",()=>a.slideTo(t))}))}function F(){a&&(a.destroy(!0,!0),a=null,E.disabled=!1,S.disabled=!1,L(0))}const M=window.matchMedia(`(min-width: ${z}px)`);M.matches&&I();M.addEventListener("change",e=>{e.matches?I():F()});new k(".accordion-container",{duration:400,showMultiple:!1});
 //# sourceMappingURL=index.js.map
