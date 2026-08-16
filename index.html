@@ -13,8 +13,8 @@
       referrerpolicy="no-referrer"
     />
     <script type="module" crossorigin src="/the-sweet-workshop/index.js"></script>
-    <link rel="modulepreload" crossorigin href="/the-sweet-workshop/assets/vendor-CShew0Yi.js">
-    <link rel="stylesheet" crossorigin href="/the-sweet-workshop/assets/index-Bd79dcU-.css">
+    <link rel="modulepreload" crossorigin href="/the-sweet-workshop/assets/vendor-DLewQupz.js">
+    <link rel="stylesheet" crossorigin href="/the-sweet-workshop/assets/index-Eb1UPMBy.css">
   </head>
   <body>
     <header class="header">
@@ -43,7 +43,44 @@
 </section>
 
       <section id="dessert-list" class="dessert-list">
-  <div class="container"></div>
+  <div class="container dessert-list__container">
+    <div class="dessert-filters-container">
+      <div class="dessert-list__text-box">
+        <h2 class="dessert-list__title">Солодощі</h2>
+        <p class="dessert-list__subtitle">
+          Спробуйте наші смачні десерти, які вас здивують!
+        </p>
+      </div>
+
+      <div class="dessert-filters">
+        <button
+          type="button"
+          class="dessert-filters__select-btn"
+          id="dessert-dropdown-btn"
+        >
+          <span id="selected-category-name">Всі десерти</span>
+          <!-- <svg class="dessert-filters__arrow-icon" width="14" height="14">
+          <use href="./images/sprite.svg#icon-arrow-down"></use>
+        </svg> -->
+
+          <!-- это строка временно заменяет свг стрелочку из макета -->
+          <span class="dessert-filters__arrow-icon">▼</span>
+        </button>
+
+        <ul class="dessert-filters__list" id="dessert-categories-list"></ul>
+      </div>
+    </div>
+
+    <ul class="dessert-gallery"></ul>
+
+    <button type="button" class="dessert-list__load-more-btn is-hidden">
+      Завантажити ще
+    </button>
+
+    <div class="dessert-list__loader-wrapper">
+      <div id="loader" class="loader is-hidden"></div>
+    </div>
+  </div>
 </section>
 
       <section id="about-us" class="about-us">
