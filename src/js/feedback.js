@@ -1,10 +1,14 @@
 import getFeedbacks from './api/feedback-api';
 import renderSlides from './feedback-render';
+import { showSuccessToast, showErrorToast } from './toast';
 import Swiper from 'swiper/bundle';
+
+const loader = document.querySelector('#loader');
 
 function createSwiper(feedback) {
   const swiperWrapperElement = document.querySelector('.swiper-wrapper');
   swiperWrapperElement.innerHTML = renderSlides(feedback);
+  loader.classList.remove('loader');
   new Swiper('.mySwiper', {
     slidesPerView: 1,
     spaceBetween: 16,
@@ -32,11 +36,12 @@ function createSwiper(feedback) {
 }
 
 async function procesFeedback() {
+  loader.classList.add('loader');
   try {
     const feedback = await getFeedbacks();
     createSwiper(feedback);
   } catch (error) {
-    console.log(error);
+    showErrorToast(error);
     return;
   }
 }
