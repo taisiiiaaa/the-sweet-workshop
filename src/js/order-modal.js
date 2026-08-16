@@ -1,7 +1,6 @@
 import { showSuccessToast, showErrorToast } from './toast.js';
 
 const modal = document.querySelector('[data-order]');
-const modalContainer = modal.querySelector('.order-modal__container');
 const closeButton = modal.querySelector('.order-modal__close');
 const form = modal.querySelector('.order-modal__form');
 const submitButton = modal.querySelector('.order-modal__submit');
