@@ -84,6 +84,16 @@
     opacity: 0;
 }
 
+.no-scroll {
+    overflow: hidden;
+    height: 100%;
+}
+
+html.no-scroll {
+    overflow: hidden;
+    height: 100%;
+}
+
 .nav-list {
     display: none;
 }
