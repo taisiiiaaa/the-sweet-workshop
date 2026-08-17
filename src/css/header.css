@@ -1,17 +1,19 @@
-.nav {
+.header-nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.nav-logo {
+.header-nav-logo {
     display: flex;
     align-items: center;
     padding-block: 3.71px;
     color: #000;
+    width: 158px;
+    height: 72px;
 }
 
-.logo-icon {
+.header-logo-icon {
     display: block;
     color: #000;
     width: 150px;
@@ -19,7 +21,7 @@
 }
 
 /* Burger button */
-.menu-toggle {
+.header-menu-toggle {
     width: 48px;
     height: 48px;
     border: none;
@@ -33,17 +35,17 @@
     transition: transform 150ms cubic-bezier(0.17, 0.67, 0.83, 0.67);
 }
 
-.menu-toggle:focus-visible {
+.header-menu-toggle:focus-visible {
     outline: 2px solid #000;
     outline-offset: 3px;
 }
 
-.menu-toggle:active {
+.header-menu-toggle:active {
     transform: scale(0.95);
 }
 
 /* Burger lines */
-.menu-toggle span {
+.header-menu-toggle span {
     position: absolute;
     width: 16px;
     left: 50%;
@@ -58,28 +60,28 @@
     transform: translate(-50%, -50%);
 }
 
-.menu-toggle span:nth-child(1) {
+.header-menu-toggle span:nth-child(1) {
     transform: translate(-50%, -50%) translateY(-6px);
 }
 
-.menu-toggle span:nth-child(2) {
+.header-menu-toggle span:nth-child(2) {
     transform: translate(-50%, -50%);
 }
 
-.menu-toggle span:nth-child(3) {
+.header-menu-toggle span:nth-child(3) {
     transform: translate(-50%, -50%) translateY(6px);
 }
 
 /* Active burger state */
-.menu-toggle.active span:nth-child(1) {
+.header-menu-toggle.active span:nth-child(1) {
     transform: translate(-50%, -50%) rotate(45deg);
 }
 
-.menu-toggle.active span:nth-child(3) {
+.header-menu-toggle.active span:nth-child(3) {
     transform: translate(-50%, -50%) rotate(-45deg);
 }
 
-.menu-toggle.active span:nth-child(2) {
+.header-menu-toggle.active span:nth-child(2) {
     transform: translate(-50%, -50%) scale(0);
     opacity: 0;
 }
@@ -94,11 +96,11 @@ html.no-scroll {
     height: 100%;
 }
 
-.nav-list {
+.header-nav-list {
     display: none;
 }
 
-.nav-link {
+.header-nav-link {
     display: inline-block;
     font-family: "Work Sans", sans-serif;
     font-weight: 400;
@@ -109,7 +111,7 @@ html.no-scroll {
     transition: color 250ms cubic-bezier(0.17, 0.67, 0.83, 0.67);
 }
 
-.nav-link::after {
+.header-nav-link::after {
     content: '';
     position: absolute;
     left: 0;
@@ -121,36 +123,36 @@ html.no-scroll {
     transition: width 250ms cubic-bezier(0.17, 0.67, 0.83, 0.67);
 }
 
-.nav-link:hover::after,
-.nav-link:focus::after {
+.header-nav-link:hover::after,
+.header-nav-link:focus::after {
     width: 100%;
 }
 
-.nav-link:active {
+.header-nav-link:active {
     text-decoration-skip-ink: none;
     color: #f19898;
 }
 
-.btn-order {
+.header-btn-order {
     display: none;
 }
 
 
 @media only screen and (min-width: 768px) {
-    .btn-order {
+    .header-btn-order {
         display: inline-flex;
         align-items: center;
-        border: 1px solid #f19898;
+        border: 2px solid #f19898;
         border-radius: 100px;
         background-color: #f19898;
         padding: 8px 20px;
     }
 
-    .nav-logo {
+    .header-nav-logo {
         margin-right: 0;
     }
 
-    .menu-toggle {
+    .header-menu-toggle {
         display: none;
     }
 
@@ -159,34 +161,34 @@ html.no-scroll {
         background-color: #f5fdfd;
     }
 
-    .nav-list {
+    .header-nav-list {
         display: flex;
         align-items: center;
         gap: 16px;
-        margin-left: 38px;
-        margin-right: auto;
+        margin-left: auto;
+        margin-right: 16px;
     }
 
-    .nav-link {
+    .header-nav-link {
         padding-block: 24px;
     }
 
-    .logo-icon {
+    .header-logo-icon {
         width: 158px;
         height: 72px;
     }
 }
 
 @media only screen and (min-width: 1440px) {
-    .nav-list {
+    .header-nav-list {
         gap: 32px;
         margin-left: auto;
     }
 }
 
-.btn {
+.header-btn {
     padding: 8px 20px;
-    border: 1px solid #f19898;
+    border: 2px solid #f19898;
     border-radius: 100px;
     background-color: #f19898;
     font-family: inherit;
@@ -202,18 +204,18 @@ html.no-scroll {
         opacity 250ms cubic-bezier(0.17, 0.67, 0.83, 0.67);
 }
 
-.btn:hover,
-.btn:focus {
+.header-btn:hover,
+.header-btn:focus {
     border: 2px solid #080c0c;
     background-color: transparent;
 }
 
-.btn:active {
+.header-btn:active {
     border: 2px solid #080c0c;
     background-color: #f5b6b6;
 }
 
-.btn:disabled {
+.header-btn:disabled {
     opacity: 0.3;
     cursor: not-allowed;
 }
