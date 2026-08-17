@@ -1,3 +1,28 @@
-<div class="dessert-details-modal" data-dessert-details>
-  <div class="container"></div>
+<div
+  class="dessert-details-modal-backdrop is-hidden"
+  data-dessert-details-modal
+>
+  <div class="dessert-details-modal">
+    <div id="dessert-loader"></div>
+
+    <button class="close-btn" type="button" data-close-dessert-modal>
+      <svg class="ic-cross" width="24" height="24">
+        <use href="../images/icons.svg#cross"></use>
+      </svg>
+    </button>
+    <img class="dessert-modal-image" src="" alt="" data-modal-image />
+    <div class="dessert-info">
+      <h2 class="dessert-modal-title" data-modal-title></h2>
+      <p class="dessert-modal-price" data-modal-price></p>
+      <div class="dessert-modal-rating" data-modal-rating></div>
+      <p class="dessert-modal-description" data-modal-description></p>
+      <p class="dessert-modal-composition" data-modal-composition>
+        <span class="dessert-modal-compound">Склад:</span>
+        <span data-modal-ingredients></span>
+      </p>
+      <button class="dessert-modal-order-btn" type="button">
+        Перейти до замовлення
+      </button>
+    </div>
+  </div>
 </div>
