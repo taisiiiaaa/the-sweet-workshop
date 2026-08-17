@@ -15,7 +15,7 @@ function renderSlides(feedbacks) {
 
         return `
           <svg class="star">
-            <use href="./images/star-rating.icons.svg#${iconType}"></use>
+            <use href="./images/icons.svg#${iconType}"></use>
           </svg>
         `;
       }).join('');
