@@ -1,3 +1,5 @@
+import iconsSprite from '../images/icons.svg';
+
 function renderSlides(feedbacks) {
   return feedbacks
     .map(({ rate, description, author }) => {
@@ -15,7 +17,7 @@ function renderSlides(feedbacks) {
 
         return `
           <svg class="star">
-            <use href="./images/icons.svg#${iconType}"></use>
+            <use href="${iconsSprite}#${iconType}"></use>
           </svg>
         `;
       }).join('');
