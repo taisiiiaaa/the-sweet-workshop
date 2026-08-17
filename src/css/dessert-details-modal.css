@@ -80,7 +80,8 @@
 }
 
 .ic-cross {
-  fill: #f19898;
+  fill: #080c0c;
+  stroke: #080c0c;
 }
 
 .dessert-modal-image {
@@ -92,6 +93,13 @@
 .dessert-info {
   display: flex;
   flex-direction: column;
+  gap: 24px;
+}
+
+.dessert-modal-title-price {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .dessert-modal-title {
@@ -101,7 +109,6 @@
   line-height: 1.2;
   letter-spacing: -0.01em;
   color: #080c0c;
-  margin-bottom: 8px;
 }
 
 .dessert-modal-price {
@@ -111,7 +118,11 @@
   line-height: 1.4;
   letter-spacing: -0.01em;
   color: #080c0c;
-  margin-bottom: 24px;
+}
+
+.dessert-modal-rating {
+  display: flex;
+  gap: 4px;
 }
 
 .dessert-modal-description {
@@ -120,7 +131,6 @@
   font-size: 14px;
   line-height: 1.5;
   color: #080c0c;
-  margin-bottom: 24px;
 }
 
 .dessert-modal-composition {
@@ -129,7 +139,7 @@
   font-size: 14px;
   line-height: 1.5;
   color: #080c0c;
-  margin-bottom: 32px;
+  margin-bottom: 8px;
 }
 
 .dessert-modal-compound {
