@@ -16,3 +16,6 @@
 @import url('./order-modal.css');
 @import url('./footer.css');
 @import url('./navbar.css');
+
+@import url('css-star-rating/css/star-rating.css');
+@import url('swiper/css/bundle');

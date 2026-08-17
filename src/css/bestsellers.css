@@ -1,7 +1,6 @@
 .bestsellers {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 48px 64px 64px;
     background: #f5fdfd;
 }
 
@@ -49,10 +48,10 @@
     transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
-.dessert-card:hover {
+/* .dessert-card:hover {
     box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
     transform: translateY(-2px);
-}
+} */
 
 .dessert-card__image {
     width: 100%;
