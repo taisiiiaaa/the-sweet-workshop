@@ -16,6 +16,7 @@
   },
   "license": "ISC",
   "dependencies": {
+    "accordeon": "^1.0.0",
     "accordion-js": "^3.4.1",
     "axios": "^1.19.0",
     "css-star-rating": "^1.3.1",

@@ -1,0 +1,134 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    
+    width: 100%;
+    height: 100%;
+    background-color: #f5fdfd;
+    
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    
+    transition:
+    opacity 250ms cubic-bezier(0.17, 0.67, 0.83, 0.67),
+    visibility 250ms cubic-bezier(0.17, 0.67, 0.83, 0.67);
+}
+
+.navbar.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.navbar .container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar-logo {
+    display: inline-block;
+    color: #000;
+    padding-block: 3.71px;
+}
+
+.logo-icon {
+    display: block;
+    color: #000;
+    width: 150px;
+    height: 64px;
+}
+
+.navbar-nav {
+    margin-top: 16px;
+    margin-bottom: 36px;
+}
+
+.navbar-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.navbar-link {
+    display: block;
+    font-family: "Work Sans", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #080c0c;
+    position: relative;
+    transition: color 250ms cubic-bezier(0.17, 0.67, 0.83, 0.67);
+}
+
+.navbar-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 24px;
+    width: 0;
+    height: 1px;
+    background-color: #000;
+
+    transition: width 250ms cubic-bezier(0.17, 0.67, 0.83, 0.67);
+}
+
+.navbar-link:hover::after,
+.navbar-link:focus::after {
+    width: 100%;
+}
+
+.navbar-link:active {
+    text-decoration: underline;
+    text-decoration-skip-ink: none;
+    color: #f19898;
+}
+
+.navbar-order {
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+    .off-screen-menu {
+        display: none;
+    }
+}
+
+.btn {
+    padding: 8px 20px;
+    border: 1px solid #f19898;
+    border-radius: 100px;
+    background-color: #f19898;
+    font-family: inherit;
+    color: inherit;
+    line-height: 1.5;
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: capitalize;
+    outline: none;
+    transition:
+        background-color 250ms cubic-bezier(0.17, 0.67, 0.83, 0.67),
+        box-shadow 250ms cubic-bezier(0.17, 0.67, 0.83, 0.67),
+        opacity 250ms cubic-bezier(0.17, 0.67, 0.83, 0.67);
+}
+
+.btn:hover,
+.btn:focus {
+    border: 2px solid #080c0c;
+    background-color: transparent;
+}
+
+.btn:active {
+    border: 2px solid #080c0c;
+    background-color: #f5b6b6;
+}
+
+.btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
