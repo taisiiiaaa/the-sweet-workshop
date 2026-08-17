@@ -33,7 +33,7 @@ import{a as L,S as M,N as R,A as j,T as D}from"./assets/vendor-Cf3z2XVp.js";(fun
             <div class="star-container">
               ${Array.from({length:5},(B,$)=>{let v="star-empty";return $<r?v="star-filled":$===r&&n&&(v="star-half"),`
           <svg class="star">
-            <use href="./images/star-rating.icons.svg#${v}"></use>
+            <use href="./images/icons.svg#${v}"></use>
           </svg>
         `}).join("")}
             </div>
