@@ -2,6 +2,7 @@
     max-width: 1200px;
     margin: 0 auto;
     background: #f5fdfd;
+    padding: 80px 64px 80px;
 }
 
 .bestsellers__title {
@@ -121,20 +122,17 @@
 }
 
 .dessert-card__btn {
-    border: 2px solid #080c0c;
+    display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid #080c0c;
         border-radius: 100px;
-        padding: 10px;
+        /* padding: 10px; */
         width: 44px;
         height: 44px;
-
-   
-    background: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.25s ease;
-    flex-shrink: 0;
+        padding: 0;
+        background-color: transparent;
+        cursor: pointer;
 }
 
 .dessert-card__btn:hover {
@@ -150,7 +148,6 @@
 .dessert-card__btn svg {
     width: 24px;
     height: 24px;
-    stroke: #1a1a1a;
     transition: stroke 0.25s ease;
 }
 
@@ -226,7 +223,7 @@
 
 @media (max-width: 1024px) {
     .bestsellers {
-        padding: 40px 40px 48px;
+        padding: 80px 64px 80px;
     }
 
     .dessert-card {
@@ -240,7 +237,7 @@
 
 @media (max-width: 640px) {
     .bestsellers {
-        padding: 32px 20px 40px;
+        padding: 64px 20px 64px;
     }
 
     .bestsellers__title {
