@@ -18,5 +18,6 @@
     refs.hamMenu.classList.toggle('active');
 
     document.body.classList.toggle('no-scroll', isOpen);
+     document.documentElement.classList.toggle('no-scroll', isOpen);
   }
 })();
