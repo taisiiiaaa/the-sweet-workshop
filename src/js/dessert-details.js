@@ -1,5 +1,7 @@
 import { getDessertDetails } from './api/dessert-details-api';
 import { showErrorToast } from './toast';
+// import { openModal } from './order-modal.js';
+import { getStarsMarkup } from './helpers.js';
 
 const modal = document.querySelector('[data-dessert-details-modal]');
 const closeBtn = document.querySelector('[data-close-dessert-modal]');
@@ -47,7 +49,8 @@ orderBtn.addEventListener('click', openOrderModal);
 function openOrderModal() {
   closeModal();
 
-  // other logic
+  const dessertId = orderBtn.dataset.id;
+  openModal(dessertId);
 }
 
 async function openDessertModal(id) {
@@ -73,6 +76,7 @@ function renderDessertModal(dessert) {
 
   modalTitle.textContent = dessert.name;
   modalPrice.textContent = `${dessert.price} грн`;
+  modalRating.innerHTML = getStarsMarkup(dessert.rate);
   modalDescription.textContent = dessert.description;
   modalIngredients.textContent = dessert.composition;
 

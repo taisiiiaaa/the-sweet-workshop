@@ -1,26 +1,9 @@
-import iconsSprite from '../images/icons.svg';
+import { getStarsMarkup } from './helpers';
 
 function renderSlides(feedbacks) {
   return feedbacks
     .map(({ rate, description, author }) => {
-      const ratingValue = Math.floor(rate);
-      const hasHalf = rate % 1 !== 0;
-
-      const stars = Array.from({ length: 5 }, (_, index) => {
-        let iconType = 'star-empty';
-
-        if (index < ratingValue) {
-          iconType = 'star-filled';
-        } else if (index === ratingValue && hasHalf) {
-          iconType = 'star-half';
-        }
-
-        return `
-          <svg class="star">
-            <use href="${iconsSprite}#${iconType}"></use>
-          </svg>
-        `;
-      }).join('');
+      const stars = getStarsMarkup(rate);
 
       return `
         <li class="swiper-slide">
