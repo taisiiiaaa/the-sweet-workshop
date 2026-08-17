@@ -1,37 +1,46 @@
 <section class="bestsellers">
-  <h2 class="bestsellers__title">Наші бестселери</h2>
+  <div class="container bestsellers__container">
+    <h2 class="bestsellers__title">Наші бестселери</h2>
+    <div class="bestsellers__slider-wrapper">
+      <div class="bestsellers__track-container">
+        <div class="bestsellers__track" id="bestsellersTrack"></div>
+      </div>
 
-  <div class="bestsellers__slider-wrapper">
-    <div class="bestsellers__track-container">
-      <div class="bestsellers__track" id="bestsellersTrack"></div>
-    </div>
+      <div class="bestsellers__nav">
+        <div class="bestsellers__dots" id="bestsellersDots"></div>
 
-    <div class="bestsellers__nav">
-      <div class="bestsellers__dots" id="bestsellersDots"></div>
-
-      <div class="bestsellers__arrows">
-        <button class="bestsellers__arrow" id="prevBtn" aria-label="Попередній">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+        <div class="bestsellers__arrows">
+          <button
+            class="bestsellers__arrow"
+            id="prevBtn"
+            aria-label="Попередній"
           >
-            <path d="M15 18l-6-6 6-6" />
-          </svg>
-        </button>
-        <button class="bestsellers__arrow" id="nextBtn" aria-label="Наступний">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
+          </button>
+          <button
+            class="bestsellers__arrow"
+            id="nextBtn"
+            aria-label="Наступний"
           >
-            <path d="M9 18l6-6-6-6" />
-          </svg>
-        </button>
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M9 18l6-6-6-6" />
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
   </div>
