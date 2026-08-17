@@ -100,12 +100,10 @@
 
   .swiper-pagination {
     position: absolute;
-    left: 50% !important;
     right: auto !important;
     bottom: 20px !important;
     width: 88px !important;
     height: 8px;
-    transform: translateX(-50%);
     display: block;
     z-index: 10;
   }
