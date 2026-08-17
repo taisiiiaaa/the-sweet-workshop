@@ -1,15 +1,18 @@
 import { showSuccessToast, showErrorToast } from './toast.js';
+import { BASE_URL } from './constants.js';
 
 const modal = document.querySelector('[data-order]');
 const closeButton = modal.querySelector('.order-modal__close');
 const form = modal.querySelector('.order-modal__form');
 const submitButton = modal.querySelector('.order-modal__submit');
 
-const API_URL = '/orders';
-
-function openModal() {
+function openModal(dessertId) {
   modal.classList.add('is-open');
   document.body.classList.add('modal-open');
+
+  if (dessertId) {
+    modal.dataset.dessertId = dessertId;
+  }
 }
 
 function closeModal() {
@@ -45,6 +48,7 @@ async function handleSubmit(event) {
   const formData = new FormData(form);
 
   const order = {
+    dessertId: modal.dataset.dessertId,
     name: formData.get('name').trim(),
     phone: formData.get('phone').trim(),
     comment: formData.get('comment').trim(),
@@ -53,7 +57,7 @@ async function handleSubmit(event) {
   setLoading(true);
 
   try {
-    const response = await fetch(API_URL, {
+    const response = await fetch(`${BASE_URL}/orders`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -73,9 +77,7 @@ async function handleSubmit(event) {
     closeModal();
 
     return data;
-  } catch (error) {
-    console.error('Order error:', error);
-
+  } catch {
     showErrorToast(
       'Не вдалося оформити замовлення. Спробуйте ще раз.'
     );
