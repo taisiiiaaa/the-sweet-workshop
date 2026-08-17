@@ -5,7 +5,7 @@ import Swiper from 'swiper/bundle';
 
 const loader = document.querySelector('#loader');
 
-const VISIBLE_BULLETS = 6;
+let visibleBullets = 6;
 const BULLET_SIZE = 8;
 const BULLET_GAP = 8;
 const BULLET_STEP = BULLET_SIZE + BULLET_GAP;
@@ -15,7 +15,7 @@ function updatePagination(swiper) {
   const totalBullets = bullets.length;
   const activeIndex = swiper.realIndex;
 
-  if (totalBullets <= VISIBLE_BULLETS) {
+  if (totalBullets <= visibleBullets) {
     bullets.forEach((bullet, index) => {
       bullet.style.transform = `translateX(${index * BULLET_STEP}px)`;
       bullet.style.opacity = index === activeIndex ? '1' : '0.2';
@@ -27,12 +27,12 @@ function updatePagination(swiper) {
 
   let startIndex = 0;
 
-  if (activeIndex >= VISIBLE_BULLETS) {
-    startIndex = activeIndex - VISIBLE_BULLETS + 1;
+  if (activeIndex >= visibleBullets) {
+    startIndex = activeIndex - visibleBullets + 1;
   }
 
-  if (startIndex > totalBullets - VISIBLE_BULLETS) {
-    startIndex = totalBullets - VISIBLE_BULLETS;
+  if (startIndex > totalBullets - visibleBullets) {
+    startIndex = totalBullets - visibleBullets;
   }
 
   bullets.forEach((bullet, index) => {
@@ -41,7 +41,7 @@ function updatePagination(swiper) {
     bullet.style.transform = `translateX(${position * BULLET_STEP}px)`;
 
     const isVisible =
-      index >= startIndex && index < startIndex + VISIBLE_BULLETS;
+      index >= startIndex && index < startIndex + visibleBullets;
 
     bullet.style.opacity = isVisible
       ? index === activeIndex
@@ -104,6 +104,9 @@ async function procesFeedback() {
   try {
     const feedback = await getFeedbacks();
 
+    if (feedback.length === 3) {
+      visibleBullets = 0;
+    }
     createSwiper(feedback);
   } catch (error) {
     showErrorToast(error);
