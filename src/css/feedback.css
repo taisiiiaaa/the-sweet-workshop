@@ -100,28 +100,32 @@
 
   .swiper-pagination {
     position: absolute;
-    left: 60px !important;
+    left: 50% !important;
     right: auto !important;
     bottom: 20px !important;
-    width: auto !important;
+    width: 88px !important;
     height: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 8px;
+    transform: translateX(-50%);
+    display: block;
     z-index: 10;
   }
 
   .swiper-pagination-bullet {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 8px;
     height: 8px;
     margin: 0 !important;
-    background: rgb(8, 12, 12);
     opacity: 0.2;
+    border-radius: 50%;
+    background: rgb(8, 12, 12);
+    transition:
+      transform 500ms ease,
+      opacity 500ms ease;
   }
 
   .swiper-pagination-bullet-active {
-    background: rgb(8, 12, 12);
     opacity: 1;
   }
 
