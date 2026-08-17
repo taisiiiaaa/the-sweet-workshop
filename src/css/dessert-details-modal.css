@@ -79,6 +79,10 @@
   background-color: transparent;
 }
 
+.ic-cross {
+  fill: #f19898;
+}
+
 .dessert-modal-image {
   height: 200px;
   width: 100%;

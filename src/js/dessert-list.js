@@ -1,36 +1,33 @@
-// Всі змінні іменовані по camelCase'u, 
-// класи по PascalCase'u, 
+// Всі змінні іменовані по camelCase'u,
+// класи по PascalCase'u,
 // константи по UPPER_SNAKE_CASE'u.
 
-const filtersContainer = document.querySelector(".dessert-filters");
-const categoriesList = document.querySelector(".dessert-filters__list");
+import { PER_PAGE } from './constants.js';
+
+const filtersContainer = document.querySelector('.dessert-filters');
+const categoriesList = document.querySelector('.dessert-filters__list');
 const dropdownBtn = document.getElementById('dessert-dropdown-btn');
 const selectedCategoryName = document.getElementById('selected-category-name');
-const gallery = document.querySelector(".dessert-gallery");
-const loaderElement = document.querySelector("#loader");
-const loadMoreBtn = document.querySelector(".dessert-list__load-more-btn");
+const gallery = document.querySelector('.dessert-gallery');
+const loaderElement = document.querySelector('#loader');
+const loadMoreBtn = document.querySelector('.dessert-list__load-more-btn');
 
-
-let activeCategory = 'all'; 
+let activeCategory = 'all';
 let currentPage = 1;
-const PER_PAGE = 8;
 
-import { 
-    getCategories, 
-    getDessertsList
- } from "./api/dessert-list-api.js"
+import { getCategories, getDessertsList } from './api/dessert-list-api.js';
 
 async function loadDessertsByCategory() {
   showLoader();
   hideLoadMoreButton();
   currentPage = 1;
-  if (gallery) gallery.innerHTML = ""
+  if (gallery) gallery.innerHTML = '';
 
   try {
     const data = await getDessertsList({
       page: currentPage,
       limit: PER_PAGE,
-      category: activeCategory
+      category: activeCategory,
     });
 
     createDessertGallery(data.desserts || []);
@@ -47,7 +44,6 @@ async function loadDessertsByCategory() {
   }
 }
 
-
 async function onLoadMore() {
   currentPage += 1;
   showLoader();
@@ -55,9 +51,9 @@ async function onLoadMore() {
 
   try {
     const data = await getDessertsList({
-        page: currentPage,
-        limit: PER_PAGE,
-        category: activeCategory
+      page: currentPage,
+      limit: PER_PAGE,
+      category: activeCategory,
     });
 
     const dessertsArray = data.desserts || [];
@@ -65,7 +61,10 @@ async function onLoadMore() {
 
     const totalRenderedCards = gallery ? gallery.children.length : 0;
 
-    if (totalRenderedCards >= data.totalItems || dessertsArray.length < PER_PAGE) {
+    if (
+      totalRenderedCards >= data.totalItems ||
+      dessertsArray.length < PER_PAGE
+    ) {
       hideLoadMoreButton();
     } else {
       showLoadMoreButton();
@@ -75,9 +74,8 @@ async function onLoadMore() {
     showLoadMoreButton();
   } finally {
     hideLoader();
-  } 
-}  
-
+  }
+}
 
 async function initApp() {
   showLoader();
@@ -85,7 +83,7 @@ async function initApp() {
     const categoriesData = await getCategories();
     createDessertFilter(categoriesData);
 
-    await loadDessertsByCategory(); 
+    await loadDessertsByCategory();
   } catch (error) {
     console.error(error);
   } finally {
@@ -93,9 +91,7 @@ async function initApp() {
   }
 }
 
-
 function createDessertFilter(categories) {
-
   if (!categoriesList) return;
 
   let markup = `
@@ -106,30 +102,34 @@ function createDessertFilter(categories) {
       </li>
     `;
 
-    markup += categories
-      .map(({_id, name}) => `
+  markup += categories
+    .map(
+      ({ _id, name }) => `
         <li class="dessert-filters__item">
           <button type="button" class="dessert-filters__btn" data-category="${_id}">
           ${name}
           </button>
         </li>
-      `).join("")
+      `
+    )
+    .join('');
 
-    categoriesList.innerHTML = markup;
+  categoriesList.innerHTML = markup;
 }
 
-
 function createDessertGallery(images) {
-    if (!gallery) return;
+  if (!gallery) return;
 
-    const markup = images.map(({
+  const markup = images
+    .map(
+      ({
         _id,
         name,
         description,
         price,
         category: { name: categoryName },
-        image
-    }) => `
+        image,
+      }) => `
        <li class="gallery-list__product-item">
          <img 
           class="gallery-list__product-image"
@@ -146,74 +146,77 @@ function createDessertGallery(images) {
           <button type="button" class="gallery-details-btn" data-id="${_id}">↗</button>
         </div>
        </li>
-    `).join("");
+    `
+    )
+    .join('');
 
-    gallery.insertAdjacentHTML('beforeend', markup);
-
+  gallery.insertAdjacentHTML('beforeend', markup);
 }
 
+filtersContainer?.addEventListener('click', event => {
+  const clickedBtn = event.target.closest('.dessert-filters__btn');
 
-filtersContainer?.addEventListener("click", (event) => {
-  const clickedBtn = event.target.closest(".dessert-filters__btn");
+  if (clickedBtn) {
+    const currentActiveBtn = categoriesList.querySelector(
+      '.dessert-filters__btn.is-active'
+    );
+    currentActiveBtn?.classList.remove('is-active');
 
-  if(clickedBtn) {
-    const currentActiveBtn = categoriesList.querySelector(".dessert-filters__btn.is-active");
-    currentActiveBtn?.classList.remove("is-active");
-
-    clickedBtn.classList.add("is-active");
+    clickedBtn.classList.add('is-active');
 
     if (selectedCategoryName) {
-            selectedCategoryName.textContent = clickedBtn.textContent.trim();
-        }
-        categoriesList.classList.remove("is-open");
-        dropdownBtn?.classList.remove("is-open");
+      selectedCategoryName.textContent = clickedBtn.textContent.trim();
+    }
+    categoriesList.classList.remove('is-open');
+    dropdownBtn?.classList.remove('is-open');
 
-        activeCategory = clickedBtn.dataset.category;
+    activeCategory = clickedBtn.dataset.category;
 
-        loadDessertsByCategory(); 
-        return;
+    loadDessertsByCategory();
+    return;
   }
 
   if (dropdownBtn?.contains(event.target)) {
-        const isOpen = categoriesList.classList.toggle("is-open");
+    const isOpen = categoriesList.classList.toggle('is-open');
 
-        dropdownBtn.classList.toggle("is-open", isOpen);
-        
-        if (selectedCategoryName) {
-      selectedCategoryName.textContent = isOpen 
-        ? "Виберіть категорію" 
-        : categoriesList.querySelector(".dessert-filters__btn.is-active").textContent.trim();
+    dropdownBtn.classList.toggle('is-open', isOpen);
+
+    if (selectedCategoryName) {
+      selectedCategoryName.textContent = isOpen
+        ? 'Виберіть категорію'
+        : categoriesList
+            .querySelector('.dessert-filters__btn.is-active')
+            .textContent.trim();
     }
-    }
+  }
 });
 
+document.addEventListener('click', event => {
+  if (filtersContainer && !filtersContainer.contains(event.target)) {
+    categoriesList?.classList.remove('is-open');
 
-document.addEventListener("click", (event) => {
-    if (filtersContainer && !filtersContainer.contains(event.target)) {
-        categoriesList?.classList.remove("is-open");
-
-        if (selectedCategoryName && categoriesList) {
-          const activeBtn = categoriesList.querySelector(".dessert-filters__btn.is-active");
-          if (activeBtn) {
-            selectedCategoryName.textContent = activeBtn.textContent.trim();
-          }
-        }
+    if (selectedCategoryName && categoriesList) {
+      const activeBtn = categoriesList.querySelector(
+        '.dessert-filters__btn.is-active'
+      );
+      if (activeBtn) {
+        selectedCategoryName.textContent = activeBtn.textContent.trim();
+      }
     }
+  }
 });
-
 
 loadMoreBtn?.addEventListener('click', onLoadMore);
 
-
 function showLoader() {
   if (loaderElement) {
-    loaderElement.classList.remove("is-hidden");
+    loaderElement.classList.remove('is-hidden');
   }
 }
 
 function hideLoader() {
   if (loaderElement) {
-    loaderElement.classList.add("is-hidden");
+    loaderElement.classList.add('is-hidden');
   }
 }
 
@@ -229,10 +232,4 @@ function hideLoadMoreButton() {
   }
 }
 
-
 initApp();
-
-
-
- 
-  
