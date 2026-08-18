@@ -1,283 +1,156 @@
+import Swiper from 'swiper/bundle';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
 import { createDessertCardMarkup } from './product-card.js';
 import { fetchBestsellers } from './api/bestsellers-api.js';
+import { showErrorToast } from './toast';
+import { openDessertModal } from './dessert-details.js';
 
+const loader = document.querySelector('#loader');
+const swiperWrapper = document.querySelector('.bestsellers__slider-wrapper');
 
-const DEMO_PRODUCTS = [
-  {
-    _id: '1',
-    name: 'Брауні з горіхами',
-    description: 'Соковитий шоколадний брауні з хрусткими горіхами.',
-    price: 110,
-    category: {
-      name: 'Шоколадна випічка',
-    },
-    image:
-      'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=600&h=400&fit=crop',
-  },
-  {
-    _id: '2',
-    name: 'Фруктовий тарт',
-    description: 'Ніжний тарт з ягідним кремом та свіжими фруктами.',
-    price: 140,
-    category: {
-      name: 'Фруктові десерти',
-    },
-    image:
-      'https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=600&h=400&fit=crop',
-  },
-  {
-    _id: '3',
-    name: 'Лавандовий чіз',
-    description: 'Ніжний чіз з нотками лаванди та ягідним соусом.',
-    price: 90,
-    category: {
-      name: 'Незабутні десерти',
-    },
-    image:
-      'https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=600&h=400&fit=crop',
-  },
-];
+const VISIBLE_BULLETS = 6;
 
-class BestsellersSlider {
-  constructor(data) {
-    this.data = data;
+const BULLET_SIZE = 8;
+const BULLET_GAP = 8;
+const BULLET_STEP = BULLET_SIZE + BULLET_GAP;
 
-    this.track = document.getElementById('bestsellersTrack');
-
-    this.dotsContainer = document.getElementById('bestsellersDots');
-
-    this.prevBtn = document.getElementById('prevBtn');
-    this.nextBtn = document.getElementById('nextBtn');
-
-    this.currentIndex = 0;
-    this.cardsPerView = this.getCardsPerView();
-    this.totalSlides = 0;
-
-    this.init();
-  }
-
-  getCardsPerView() {
-    if (window.innerWidth < 768) {
-      return 1;
-    }
-
-    if (window.innerWidth < 1440) {
-      return 2;
-    }
-
-    return 3;
-  }
-
-  init() {
-    if (!this.track) {
-      return;
-    }
-
-    this.renderCards();
-    this.updateSlider();
-    this.bindEvents();
-
-    window.addEventListener('resize', this.handleResize.bind(this));
-  }
-
-  renderCards() {
-    if (!this.track) {
-      return;
-    }
-
-    this.track.innerHTML = this.data
-      .map(
-        item => `
-          <li class="bestsellers-track__item">
-            ${createDessertCardMarkup(item)}
-          </li>
-        `
-      )
-      .join('');
-  }
-
-  updateSlider() {
-    if (!this.track) {
-      return;
-    }
-
-    this.cardsPerView = this.getCardsPerView();
-
-    this.totalSlides = Math.max(0, this.data.length - this.cardsPerView);
-
-    if (this.currentIndex > this.totalSlides) {
-      this.currentIndex = this.totalSlides;
-    }
-
-    const firstSlide = this.track.querySelector('.bestsellers-track__item');
-
-    if (firstSlide) {
-      const slideWidth = firstSlide.offsetWidth;
-
-      const gap = parseFloat(getComputedStyle(this.track).gap);
-
-      const offset = this.currentIndex * (slideWidth + gap);
-
-      this.track.style.transform = `translate3d(-${offset}px, 0, 0)`;
-    }
-
-    this.renderDots();
-    this.updateButtons();
-  }
-
-  renderDots() {
-    if (!this.dotsContainer) {
-      return;
-    }
-
-    const dotsCount = this.totalSlides + 1;
-
-    this.dotsContainer.innerHTML = '';
-
-    for (let i = 0; i < dotsCount; i += 1) {
-      const dot = document.createElement('button');
-
-      dot.type = 'button';
-
-      dot.className =
-        'bestsellers__dot' + (i === this.currentIndex ? ' active' : '');
-
-      dot.setAttribute('aria-label', `Слайд ${i + 1}`);
-
-      dot.setAttribute(
-        'aria-current',
-        i === this.currentIndex ? 'true' : 'false'
-      );
-
-      dot.addEventListener('click', () => {
-        this.currentIndex = i;
-        this.updateSlider();
-      });
-
-      this.dotsContainer.appendChild(dot);
-    }
-  }
-
-  updateButtons() {
-    if (!this.prevBtn || !this.nextBtn) {
-      return;
-    }
-
-    this.prevBtn.disabled = this.currentIndex === 0;
-
-    this.nextBtn.disabled = this.currentIndex >= this.totalSlides;
-  }
-
-  next() {
-    if (this.currentIndex < this.totalSlides) {
-      this.currentIndex += 1;
-      this.updateSlider();
-    }
-  }
-
-  prev() {
-    if (this.currentIndex > 0) {
-      this.currentIndex -= 1;
-      this.updateSlider();
-    }
-  }
-
-  handleResize() {
-    const newCardsPerView = this.getCardsPerView();
-
-    if (newCardsPerView !== this.cardsPerView) {
-      this.currentIndex = 0;
-    }
-
-    this.updateSlider();
-  }
-  bindEvents() {
-    this.nextBtn?.addEventListener('click', () => {
-      this.next();
-    });
-
-    this.prevBtn?.addEventListener('click', () => {
-      this.prev();
-    });
-
-    let startX = 0;
-    let startY = 0;
-    let isDragging = false;
-
-    this.track?.addEventListener(
-      'touchstart',
-      event => {
-        const touch = event.touches[0];
-
-        startX = touch.clientX;
-        startY = touch.clientY;
-
-        isDragging = true;
-      },
-      {
-        passive: true,
-      }
-    );
-
-    this.track?.addEventListener(
-      'touchend',
-      event => {
-        if (!isDragging) {
-          return;
-        }
-
-        const touch = event.changedTouches[0];
-
-        const endX = touch.clientX;
-        const endY = touch.clientY;
-
-        const diffX = startX - endX;
-        const diffY = startY - endY;
-
-        isDragging = false;
-
-        if (Math.abs(diffY) > Math.abs(diffX)) {
-          return;
-        }
-
-        if (Math.abs(diffX) < 50) {
-          return;
-        }
-
-        if (diffX > 0) {
-          this.next();
-        } else {
-          this.prev();
-        }
-      },
-      {
-        passive: true,
-      }
-    );
-  }
+function renderBestsellers(products) {
+  swiperWrapper.innerHTML = products
+    .map(
+      item => `
+        <li class="swiper-slide">
+          ${createDessertCardMarkup(item)}
+        </li>
+      `
+    )
+    .join('');
 }
 
-async function loadBestsellers() {
+function updatePagination(swiper) {
+  const bullets = swiper.pagination.bullets;
+  const totalBullets = bullets.length;
+  const activeIndex = swiper.realIndex;
+
+  if (!totalBullets) {
+    return;
+  }
+
+  if (totalBullets <= VISIBLE_BULLETS) {
+    bullets.forEach((bullet, index) => {
+      bullet.style.transform = `translateX(${index * BULLET_STEP}px)`;
+      bullet.style.visibility = 'visible';
+      bullet.style.opacity = index === activeIndex ? '1' : '0.2';
+    });
+
+    return;
+  }
+
+  let startIndex = activeIndex - Math.floor(VISIBLE_BULLETS / 2);
+
+  startIndex = Math.max(startIndex, 0);
+  startIndex = Math.min(startIndex, totalBullets - VISIBLE_BULLETS);
+
+  bullets.forEach((bullet, index) => {
+    const position = index - startIndex;
+
+    const isVisible =
+      index >= startIndex && index < startIndex + VISIBLE_BULLETS;
+
+    bullet.style.transform = `translateX(${position * BULLET_STEP}px)`;
+
+    bullet.style.visibility = isVisible ? 'visible' : 'hidden';
+
+    bullet.style.opacity = isVisible && index === activeIndex ? '1' : '0.2';
+  });
+}
+
+function createSwiper() {
+  return new Swiper('.bestsellers__swiper .mySwiper', {
+    slidesPerView: 1,
+    spaceBetween: 16,
+
+    loop: false,
+
+    pagination: {
+      el: '.bestsellers__swiper-pagination',
+      clickable: true,
+      dynamicBullets: false,
+    },
+
+    navigation: {
+      nextEl: '.bestsellers__swiper-button-next',
+      prevEl: '.bestsellers__swiper-button-prev',
+    },
+
+    breakpoints: {
+      768: {
+        slidesPerView: 2,
+        spaceBetween: 24,
+      },
+
+      1440: {
+        slidesPerView: 3,
+        spaceBetween: 24,
+      },
+    },
+
+    on: {
+      init(swiper) {
+        updatePagination(swiper);
+      },
+
+      slideChangeTransitionStart(swiper) {
+        updatePagination(swiper);
+      },
+
+      resize(swiper) {
+        updatePagination(swiper);
+      },
+    },
+  });
+}
+
+function handleProductDetailsClick(event) {
+  const button = event.target.closest('.js-product-details__btn');
+
+  if (!button || !swiperWrapper.contains(button)) {
+    return;
+  }
+
+  const dessertId = button.dataset.id;
+
+  if (!dessertId) {
+    return;
+  }
+
+  openDessertModal(dessertId);
+}
+
+swiperWrapper?.addEventListener('click', handleProductDetailsClick);
+
+async function processBestsellers() {
+  loader?.classList.add('loader');
+
   try {
-    const desserts = await fetchBestsellers();
+    const products = await fetchBestsellers();
 
-    if (!Array.isArray(desserts) || desserts.length === 0) {
-      console.warn('API повернуло порожній список, використовую демо-дані');
-
-      new BestsellersSlider(DEMO_PRODUCTS);
-
+    if (!products || products.length === 0) {
       return;
     }
 
-    new BestsellersSlider(desserts);
-  } catch (error) {
-    console.warn(
-      'Не вдалося завантажити з API, використовую демо-дані:',
-      error
-    );
+    renderBestsellers(products);
 
-    new BestsellersSlider(DEMO_PRODUCTS);
+    loader?.classList.remove('loader');
+
+    createSwiper();
+  } catch (error) {
+    loader?.classList.remove('loader');
+
+    showErrorToast(error);
   }
 }
 
-document.addEventListener('DOMContentLoaded', loadBestsellers);
+processBestsellers();
