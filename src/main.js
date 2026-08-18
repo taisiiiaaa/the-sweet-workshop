@@ -5,3 +5,4 @@ import './js/navbar.js';
 import './js/about-us.js';
 import './js/faq.js';
 import './js/feedback.js';
+import './js/bestsellers.js';

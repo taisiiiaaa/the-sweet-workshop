@@ -2,9 +2,11 @@
   position: fixed;
   inset: 0;
   z-index: 1000;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   background-color: rgba(0, 0, 0, 0.25);
 
   opacity: 1;
@@ -23,6 +25,7 @@
 
 .dessert-details-modal {
   position: relative;
+
   max-height: calc(100vh - 32px);
   overflow-y: auto;
 
@@ -32,22 +35,24 @@
 
   border-radius: 16px;
   padding: 64px 20px;
+
   width: 90%;
   min-width: 304px;
   max-width: 335px;
+
   background-color: #f5fdfd;
 }
 
-#dessert-loader {
-  display: none;
-}
-
-#dessert-loader.loader {
+.dessert-loader {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 16px;
 
-  margin: 40px auto;
+  background-color: rgba(245, 253, 253, 0.85);
 }
 
 .dessert-details-modal::-webkit-scrollbar {
@@ -71,12 +76,21 @@
   position: absolute;
   top: 16px;
   right: 16px;
+
   padding: 4px;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   border: none;
   background-color: transparent;
+
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  opacity: 0.6;
 }
 
 .ic-cross {
@@ -85,9 +99,10 @@
 }
 
 .dessert-modal-image {
-  height: 200px;
   width: 100%;
+  height: 200px;
   border-radius: 16px;
+  object-fit: cover;
 }
 
 .dessert-info {
@@ -139,7 +154,6 @@
   font-size: 14px;
   line-height: 1.5;
   color: #080c0c;
-  margin-bottom: 8px;
 }
 
 .dessert-modal-compound {
@@ -147,24 +161,30 @@
 }
 
 .dessert-modal-order-btn {
+  padding: 10px 24px;
+  border: 2px solid #f19898;
+  border-radius: 100px;
   font-family: 'Work Sans', sans-serif;
   font-weight: 500;
   font-size: 16px;
   line-height: 1.5;
   color: #080c0c;
-  border-radius: 100px;
-  padding: 10px 24px;
-  border: 2px solid #f19898;
   background-color: #f19898;
+
   transition:
-    border 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
     background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .dessert-modal-order-btn:hover,
 .dessert-modal-order-btn:focus {
-  border: 2px solid #080c0c;
+  border-color: #080c0c;
   background-color: transparent;
+}
+
+.dessert-modal-order-btn:active {
+  background-color: #f5b6b6;
+  border-color: #080c0c;
 }
 
 @media only screen and (min-width: 768px) {
@@ -175,8 +195,8 @@
   }
 
   .dessert-modal-image {
-    height: 480px;
     width: 100%;
+    height: 480px;
   }
 
   .dessert-modal-order-btn {
@@ -189,13 +209,27 @@
     flex-direction: row;
     align-items: center;
     gap: 24px;
+
     padding-inline: 64px;
+
     max-width: 1312px;
     width: 100%;
   }
 
   .dessert-modal-image {
+    flex: 0 0 580px;
+
+    width: 580px;
+    height: 580px;
+
     max-width: 580px;
+
+    object-fit: cover;
+  }
+
+  .dessert-info {
+    flex: 1;
+    min-width: 0;
   }
 
   .dessert-modal-title {

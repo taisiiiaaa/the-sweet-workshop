@@ -18,6 +18,13 @@
   display: flex;
   align-items: center;
   flex-shrink: 0;
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.footer__logo:hover,
+.footer__logo:focus,
+.footer__logo:active {
+  opacity: 0.6;
 }
 
 .footer__logo-icon {
@@ -39,6 +46,13 @@
   font-size: 18px;
   font-weight: 600;
   line-height: 1.5;
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.footer__nav a:hover,
+.footer__nav a:focus,
+.footer__nav a:active {
+  opacity: 0.6;
 }
 
 .footer__socials {
@@ -52,6 +66,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.footer__socials a:hover,
+.footer__socials a:focus,
+.footer__socials a:active {
+  opacity: 0.6;
 }
 
 .footer__bottom {

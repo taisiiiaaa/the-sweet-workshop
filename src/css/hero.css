@@ -66,9 +66,8 @@
   text-decoration: none;
   cursor: pointer;
   transition:
-    background-color 0.3s ease,
-    border-color 0.3s ease,
-    color 0.3s ease;
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   font-family: 'Work Sans', sans-serif;
   font-weight: 500;
   font-size: 16px;
@@ -78,9 +77,12 @@
 
 .hero-btn:hover,
 .hero-btn:focus {
-  background-color: #ffffff;
+  background-color: #fff;
   border-color: #080c0c;
-  color: #080c0c;
+}
+
+.hero-btn:active {
+  background-color: #f5b6b6;
 }
 
 .hero-btn:focus-visible {

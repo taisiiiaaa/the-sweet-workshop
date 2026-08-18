@@ -1,18 +1,17 @@
 import { PER_PAGE } from './constants.js';
-import { getCategories, getDessertsList } from "./api/dessert-list-api.js"
+import { getCategories, getDessertsList } from './api/dessert-list-api.js';
 import { createDessertCardMarkup } from './product-card.js';
 
-const filtersContainer = document.querySelector(".dessert-filters");
-const categoriesList = document.querySelector(".dessert-filters__list");
+const filtersContainer = document.querySelector('.dessert-filters');
+const categoriesList = document.querySelector('.dessert-filters__list');
 const dropdownBtn = document.getElementById('dessert-dropdown-btn');
 const selectedCategoryName = document.getElementById('selected-category-name');
 const gallery = document.querySelector('.dessert-gallery');
-const loaderElement = document.querySelector('.loader');
+const loaderElement = document.querySelector('#dessert-list-loader');
 const loadMoreBtn = document.querySelector('.dessert-list__load-more-btn');
 
 let activeCategory = 'all';
 let currentPage = 1;
-
 
 async function loadDessertsByCategory() {
   showLoader();
@@ -117,17 +116,18 @@ function createDessertFilter(categories) {
 function createDessertGallery(images) {
   if (!gallery) return;
 
-    const markup = images
-      .map(item => `
+  const markup = images
+    .map(
+      item => `
          <li class="gallery-list__product-item product__item">
            ${createDessertCardMarkup(item)}
          </li>
-      `)
-      .join("");
+      `
+    )
+    .join('');
 
-    gallery.insertAdjacentHTML('beforeend', markup);
+  gallery.insertAdjacentHTML('beforeend', markup);
 }
-
 
 filtersContainer?.addEventListener('click', event => {
   const clickedBtn = event.target.closest('.dessert-filters__btn');
