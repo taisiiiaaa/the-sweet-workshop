@@ -214,20 +214,14 @@ class BestsellersSlider {
   }
 
   handleResize() {
-    const newCardsPerView =
-      this.getCardsPerView();
+  const newCardsPerView = this.getCardsPerView();
 
-    if (
-      newCardsPerView !== this.cardsPerView
-    ) {
-      this.currentIndex = 0;
-      this.updateSlider();
-      return;
-    }
-
-    this.updateSlider();
+  if (newCardsPerView !== this.cardsPerView) {
+    this.currentIndex = 0;
   }
 
+  this.updateSlider();
+}
   bindEvents() {
     this.nextBtn?.addEventListener(
       'click',

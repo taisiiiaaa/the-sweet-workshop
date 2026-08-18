@@ -33,25 +33,25 @@
 
 .bestsellers__track {
     display: flex;
-    gap: 32px;
+    width: 100%;
+    gap: 24px;
 
     margin: 0;
     padding: 0;
 
     list-style: none;
 
-    transition:
-        transform 400ms cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition: transform 400ms cubic-bezier(0.25, 0.8, 0.25, 1);
 
     will-change: transform;
-
     touch-action: pan-y;
 }
 
 .bestsellers-track__item {
-    flex: 0 0 100%;
+flex: 0 0 100%;
+    width: 100%;
     min-width: 0;
-    margin: 0;
+    max-width: 100%;
 }
 
 /* NAVIGATION */
@@ -66,7 +66,7 @@
 
 .bestsellers__dots {
     display: flex;
-    align-items: center;
+  
     gap: 8px;
 }
 
@@ -294,7 +294,9 @@
     }
 
     .bestsellers-track__item {
-        flex: 0 0 calc((100% - 16px) / 2);
+    flex: 0 0 calc((100% - 16px) / 2);
+        width: calc((100% - 16px) / 2);
+        max-width: calc((100% - 16px) / 2);
     }
 
     .product__image {
@@ -321,6 +323,8 @@
 
     .bestsellers-track__item {
         flex: 0 0 calc((100% - 48px) / 3);
+            width: calc((100% - 48px) / 3);
+            max-width: calc((100% - 48px) / 3);
     }
 
     .product__card {
