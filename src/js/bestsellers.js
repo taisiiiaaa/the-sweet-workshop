@@ -1,7 +1,10 @@
+import { createDessertCardMarkup } from './product-card.js';
+
 const API = {
   products:
     'https://deserts-store.b.goit.study/api/desserts?type=popular',
 };
+
 
 const DEMO_PRODUCTS = [
   {
@@ -81,61 +84,14 @@ class BestsellersSlider {
   }
 
   renderCards() {
-    if (!this.track) {
-      return;
-    }
+    if (!this.track) return;
 
     this.track.innerHTML = this.data
       .map(
         item => `
-          <article class="dessert-card">
-            <img
-              class="dessert-card__image"
-              src="${item.image}"
-              alt="${item.name}"
-              loading="lazy"
-            >
-
-            <div class="dessert-card__content">
-              <span class="dessert-card__category">
-                ${item.category?.name || ''}
-              </span>
-
-              <h3 class="dessert-card__title">
-                ${item.name}
-              </h3>
-
-              <p class="dessert-card__desc">
-                ${item.description || ''}
-              </p>
-
-              <div class="dessert-card__footer">
-                <span class="dessert-card__price">
-                  ${item.price} грн
-                </span>
-
-                <button
-                  type="button"
-                  class="dessert-card__btn"
-                  data-id="${item._id}"
-                  aria-label="Детальніше про ${item.name}"
-                >
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M16.2902 7.801L6.69448 17.4028C6.52065 17.5726 6.32073 17.6575 6.09473 17.6575C5.8689 17.6575 5.67098 17.5706 5.50098 17.3968C5.32715 17.2228 5.24023 17.0228 5.24023 16.797C5.24023 16.5712 5.32715 16.3713 5.50098 16.1973L15.0967 6.60175H6.64773C6.4034 6.60175 6.1994 6.51942 6.03573 6.35475C5.87207 6.19025 5.79023 5.98717 5.79023 5.7455C5.79023 5.504 5.87207 5.30242 6.03573 5.14075C6.1994 4.97909 6.4034 4.89825 6.64773 4.89825H17.1477C17.3882 4.89825 17.5903 4.98017 17.754 5.144C17.9177 5.30767 17.9995 5.50967 17.9995 5.75V16.25C17.9995 16.4903 17.9172 16.6923 17.7527 16.856C17.5882 17.0198 17.3852 17.1018 17.1435 17.1018C16.8978 17.1018 16.6942 17.0198 16.5325 16.856C16.371 16.6923 16.2902 16.4903 16.25V7.801Z"
-                      fill="#080C0C"
-                    />
-                  </svg>
-                </button>
-              </div>
-            </div>
-          </article>
+          <li class="bestsellers-track__item">
+            ${createDessertCardMarkup(item)}
+          </li>
         `
       )
       .join('');
