@@ -15,12 +15,14 @@
           id="dessert-dropdown-btn"
         >
           <span id="selected-category-name">Всі десерти</span>
-          <!-- <svg class="dessert-filters__arrow-icon" width="14" height="14">
-          <use href="./images/sprite.svg#icon-arrow-down"></use>
-        </svg> -->
-
-          <!-- это строка временно заменяет свг стрелочку из макета -->
-          <span class="dessert-filters__arrow-icon">▼</span>
+          <svg
+            class="dessert-filters__arrow-icon"
+            width="24"
+            height="24"
+            aria-hidden="true"
+          >
+            <use href="./images/icons.svg#arrow-down"></use>
+          </svg>
         </button>
 
         <ul class="dessert-filters__list" id="dessert-categories-list"></ul>
@@ -33,8 +35,6 @@
       Завантажити ще
     </button>
 
-    <div class="dessert-list__loader-wrapper">
-      <div id="loader" class="loader is-hidden"></div>
-    </div>
+    <div id="loader" class="loader is-hidden"></div>
   </div>
 </section>
