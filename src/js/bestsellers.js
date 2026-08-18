@@ -159,7 +159,6 @@ class BestsellersSlider {
   }
 
   updateButtons() {
-    console.log("updatebutton")
     if (!this.prevBtn || !this.nextBtn) {
       return;
     }
