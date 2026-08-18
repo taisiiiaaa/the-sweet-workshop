@@ -2,10 +2,10 @@
   padding-block: 80px;
 }
 
-.bestsellers__container {
+.bestsellers .container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: center;
 }
 
 .bestsellers__title {
@@ -13,20 +13,23 @@
   font-family: 'Comfortaa', sans-serif;
   font-weight: 700;
   font-size: 36px;
-  line-height: 1.2;
+  line-height: 120%;
   letter-spacing: -0.01em;
+  text-align: center;
   color: #080c0c;
   align-self: start;
 }
 
-.bestsellers__swiper {
+.bestsellers-swiper {
   position: relative;
   width: 100%;
+  padding-bottom: 80px;
 }
 
-.bestsellers__swiper .mySwiper {
+/* Сам swiper */
+.bestsellers__swiper {
   width: 100%;
-  overflow: hidden;
+  position: relative;
 }
 
 .bestsellers__slider-wrapper {
@@ -218,7 +221,10 @@
 
   opacity: 0.2;
 
-  cursor: pointer;
+.bestsellers-swiper .swiper-button-prev {
+  left: auto;
+  right: 64px;
+}
 
   transition:
     transform 300ms ease,
