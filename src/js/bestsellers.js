@@ -1,6 +1,6 @@
+import Swiper from 'swiper/bundle';
 import { createDessertCardMarkup } from './product-card.js';
 import { fetchBestsellers } from './api/bestsellers-api.js';
-
 
 const DEMO_PRODUCTS = [
   {
@@ -38,223 +38,60 @@ const DEMO_PRODUCTS = [
   },
 ];
 
-class BestsellersSlider {
-  constructor(data) {
-    this.data = data;
+function renderBestsellers(products) {
+  const track = document.getElementById('bestsellersTrack');
 
-    this.track = document.getElementById('bestsellersTrack');
-
-    this.dotsContainer = document.getElementById('bestsellersDots');
-
-    this.prevBtn = document.getElementById('prevBtn');
-    this.nextBtn = document.getElementById('nextBtn');
-
-    this.currentIndex = 0;
-    this.cardsPerView = this.getCardsPerView();
-    this.totalSlides = 0;
-
-    this.init();
+  if (!track) {
+    return;
   }
 
-  getCardsPerView() {
-    if (window.innerWidth < 768) {
-      return 1;
-    }
+  track.innerHTML = products
+    .map(
+      product => `
+        <li class="swiper-slide bestsellers-track__item">
+          ${createDessertCardMarkup(product)}
+        </li>
+      `
+    )
+    .join('');
+}
 
-    if (window.innerWidth < 1440) {
-      return 2;
-    }
+function createBestsellersSwiper(products) {
+  renderBestsellers(products);
 
-    return 3;
-  }
+  const swiper = new Swiper('.bestsellers__swiper', {
+    slidesPerView: 1,
+    spaceBetween: 8,
 
-  init() {
-    if (!this.track) {
-      return;
-    }
+    dynamicMainBullets: 6,
 
-    this.renderCards();
-    this.updateSlider();
-    this.bindEvents();
+    speed: 600,
 
-    window.addEventListener('resize', this.handleResize.bind(this));
-  }
+    pagination: {
+      el: '.bestsellers__dots',
+      clickable: true,
+    },
 
-  renderCards() {
-    if (!this.track) {
-      return;
-    }
+    navigation: {
+      nextEl: '.bestsellers-swiper .swiper-button-next',
+      prevEl: '.bestsellers-swiper .swiper-button-prev',
+    },
 
-    this.track.innerHTML = this.data
-      .map(
-        item => `
-          <li class="bestsellers-track__item">
-            ${createDessertCardMarkup(item)}
-          </li>
-        `
-      )
-      .join('');
-  }
-
-  updateSlider() {
-    if (!this.track) {
-      return;
-    }
-
-    this.cardsPerView = this.getCardsPerView();
-
-    this.totalSlides = Math.max(0, this.data.length - this.cardsPerView);
-
-    if (this.currentIndex > this.totalSlides) {
-      this.currentIndex = this.totalSlides;
-    }
-
-    const firstSlide = this.track.querySelector('.bestsellers-track__item');
-
-    if (firstSlide) {
-      const slideWidth = firstSlide.offsetWidth;
-
-      const gap = parseFloat(getComputedStyle(this.track).gap);
-
-      const offset = this.currentIndex * (slideWidth + gap);
-
-      this.track.style.transform = `translate3d(-${offset}px, 0, 0)`;
-    }
-
-    this.renderDots();
-    this.updateButtons();
-  }
-
-  renderDots() {
-    if (!this.dotsContainer) {
-      return;
-    }
-
-    const dotsCount = this.totalSlides + 1;
-
-    this.dotsContainer.innerHTML = '';
-
-    for (let i = 0; i < dotsCount; i += 1) {
-      const dot = document.createElement('button');
-
-      dot.type = 'button';
-
-      dot.className =
-        'bestsellers__dot' + (i === this.currentIndex ? ' active' : '');
-
-      dot.setAttribute('aria-label', `Слайд ${i + 1}`);
-
-      dot.setAttribute(
-        'aria-current',
-        i === this.currentIndex ? 'true' : 'false'
-      );
-
-      dot.addEventListener('click', () => {
-        this.currentIndex = i;
-        this.updateSlider();
-      });
-
-      this.dotsContainer.appendChild(dot);
-    }
-  }
-
-  updateButtons() {
-    if (!this.prevBtn || !this.nextBtn) {
-      return;
-    }
-
-    this.prevBtn.disabled = this.currentIndex === 0;
-
-    this.nextBtn.disabled = this.currentIndex >= this.totalSlides;
-  }
-
-  next() {
-    if (this.currentIndex < this.totalSlides) {
-      this.currentIndex += 1;
-      this.updateSlider();
-    }
-  }
-
-  prev() {
-    if (this.currentIndex > 0) {
-      this.currentIndex -= 1;
-      this.updateSlider();
-    }
-  }
-
-  handleResize() {
-    const newCardsPerView = this.getCardsPerView();
-
-    if (newCardsPerView !== this.cardsPerView) {
-      this.currentIndex = 0;
-    }
-
-    this.updateSlider();
-  }
-  bindEvents() {
-    this.nextBtn?.addEventListener('click', () => {
-      this.next();
-    });
-
-    this.prevBtn?.addEventListener('click', () => {
-      this.prev();
-    });
-
-    let startX = 0;
-    let startY = 0;
-    let isDragging = false;
-
-    this.track?.addEventListener(
-      'touchstart',
-      event => {
-        const touch = event.touches[0];
-
-        startX = touch.clientX;
-        startY = touch.clientY;
-
-        isDragging = true;
+    breakpoints: {
+      768: {
+        slidesPerView: 2,
+        spaceBetween: 16,
       },
-      {
-        passive: true,
-      }
-    );
 
-    this.track?.addEventListener(
-      'touchend',
-      event => {
-        if (!isDragging) {
-          return;
-        }
-
-        const touch = event.changedTouches[0];
-
-        const endX = touch.clientX;
-        const endY = touch.clientY;
-
-        const diffX = startX - endX;
-        const diffY = startY - endY;
-
-        isDragging = false;
-
-        if (Math.abs(diffY) > Math.abs(diffX)) {
-          return;
-        }
-
-        if (Math.abs(diffX) < 50) {
-          return;
-        }
-
-        if (diffX > 0) {
-          this.next();
-        } else {
-          this.prev();
-        }
+      1440: {
+        slidesPerView: 3,
+        spaceBetween: 24,
       },
-      {
-        passive: true,
-      }
-    );
-  }
+
+    },
+  });
+
+  return swiper;
 }
 
 async function loadBestsellers() {
@@ -262,21 +99,23 @@ async function loadBestsellers() {
     const desserts = await fetchBestsellers();
 
     if (!Array.isArray(desserts) || desserts.length === 0) {
-      console.warn('API повернуло порожній список, використовую демо-дані');
+      console.warn(
+        'API повернуло порожній список, використовую демо-дані'
+      );
 
-      new BestsellersSlider(DEMO_PRODUCTS);
+      createBestsellersSwiper(DEMO_PRODUCTS);
 
       return;
     }
 
-    new BestsellersSlider(desserts);
+    createBestsellersSwiper(desserts);
   } catch (error) {
     console.warn(
       'Не вдалося завантажити з API, використовую демо-дані:',
       error
     );
 
-    new BestsellersSlider(DEMO_PRODUCTS);
+    createBestsellersSwiper(DEMO_PRODUCTS);
   }
 }
 

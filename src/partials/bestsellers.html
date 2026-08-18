@@ -1,40 +1,23 @@
 <section id="bestsellers" class="bestsellers">
-  <div class="container bestsellers__container">
+  <div class="container">
     <h2 class="bestsellers__title">Наші бестселери</h2>
 
-    <div class="bestsellers__slider-wrapper">
-      <div class="bestsellers__track-container">
-        <ul class="bestsellers__track" id="bestsellersTrack"></ul>
-      </div>
+    <div class="bestsellers-swiper">
+      <button class="swiper-button swiper-button-next">
+        <svg class="swiper-arrow-icon">
+          <use href="./images/icons.svg#arrow-right"></use>
+        </svg>
+      </button>
+      <button class="swiper-button swiper-button-prev">
+        <svg class="swiper-arrow-icon">
+          <use href="./images/icons.svg#arrow-left"></use>
+        </svg>
+      </button>
 
-      <div class="bestsellers__nav">
-        <div class="bestsellers__dots" id="bestsellersDots"></div>
+      <div class="swiper-pagination bestsellers__dots"></div>
 
-        <div class="bestsellers__arrows">
-          <div class="bestsellers__arrows">
-          <button
-            type="button"
-            class="bestsellers__arrow"
-            id="prevBtn"
-            aria-label="Попередній"
-          >
-            <svg width="24" height="24">
-              <use href="./images/icons.svg#arrow-left"></use>
-            </svg>
-          </button>
-
-          <div class="bestsellers__arrows">
-          <button
-            type="button"
-            class="bestsellers__arrow"
-            id="nextBtn"
-            aria-label="Наступний"
-          >
-            <svg width="24" height="24">
-              <use href="./images/icons.svg#arrow-right"></use>
-            </svg>
-          </button>
-        </div>
+      <div class="swiper bestsellers__swiper">
+        <ul class="swiper-wrapper" id="bestsellersTrack"></ul>
       </div>
     </div>
   </div>
