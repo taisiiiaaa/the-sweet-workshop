@@ -29,13 +29,21 @@
 .order-modal__container {
   position: relative;
 
-  width: 100%;
-  max-width: 335px;
+  max-height: calc(100vh - 32px);
+  overflow-y: auto;
 
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  border-radius: 16px;
   padding: 64px 20px;
 
+  width: 90%;
+  min-width: 304px;
+  max-width: 335px;
+
   background-color: #f5fdfd;
-  border-radius: 16px;
 }
 
 .order-modal__close {
@@ -54,11 +62,6 @@
 
   border: none;
   background-color: transparent;
-
-  font-size: 24px;
-  line-height: 1;
-
-  cursor: pointer;
 
   transition:
     opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
@@ -130,8 +133,7 @@
 
   outline: none;
 
-  transition:
-    border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .order-modal__input {
@@ -166,13 +168,11 @@
 .order-modal__submit {
   align-self: center;
 
-  width: 196px;
-  height: 44px;
-
   padding: 12px 20px;
+  width: 100%;
 
-  border: 1px solid transparent;
-  border-radius: 24px;
+  border: 2px solid #f19898;
+  border-radius: 100px;
 
   background-color: #f19898;
 
@@ -184,16 +184,16 @@
 
   white-space: nowrap;
 
-  cursor: pointer;
-
   transition:
     background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
     border-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
     transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.order-modal__submit:hover {
+.order-modal__submit:hover,
+.order-modal__submit:focus {
   border-color: #080c0c;
+  background-color: transparent;
 }
 
 .order-modal__submit:focus-visible {
@@ -202,7 +202,7 @@
 }
 
 .order-modal__submit:active {
-  background-color: #e78383;
+  background-color: #f5b6b6;
   transform: scale(0.98);
 }
 
@@ -210,11 +210,6 @@
   cursor: not-allowed;
   opacity: 0.7;
 }
-
-body.modal-open {
-  overflow: hidden;
-}
-
 
 /* =========================
    TABLET — 768px+
@@ -240,11 +235,10 @@ body.modal-open {
   }
 
   .order-modal__submit {
-    width: 180px;
+    max-width: 344px;
     white-space: nowrap;
   }
 }
-
 
 /* =========================
    DESKTOP — 1440px+
@@ -269,6 +263,6 @@ body.modal-open {
   }
 
   .order-modal__submit {
-    width: 196px;
+    max-width: 196px;
   }
 }

@@ -8,7 +8,7 @@ const submitButton = modal.querySelector('.order-modal__submit');
 
 function openModal(dessertId) {
   modal.classList.add('is-open');
-  document.body.classList.add('modal-open');
+  document.body.classList.add('no-scroll');
 
   if (dessertId) {
     modal.dataset.dessertId = dessertId;
@@ -17,7 +17,7 @@ function openModal(dessertId) {
 
 function closeModal() {
   modal.classList.remove('is-open');
-  document.body.classList.remove('modal-open');
+  document.body.classList.remove('no-scroll');
 }
 
 function createLoader() {
@@ -78,9 +78,7 @@ async function handleSubmit(event) {
 
     return data;
   } catch {
-    showErrorToast(
-      'Не вдалося оформити замовлення. Спробуйте ще раз.'
-    );
+    showErrorToast('Не вдалося оформити замовлення. Спробуйте ще раз.');
   } finally {
     setLoading(false);
   }

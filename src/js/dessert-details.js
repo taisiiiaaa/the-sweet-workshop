@@ -3,53 +3,20 @@ import { showErrorToast } from './toast';
 import { openModal } from './order-modal.js';
 import { getStarsMarkup } from './helpers.js';
 
-const modal = document.querySelector(
-  '[data-dessert-details-modal]'
-);
+const modal = document.querySelector('[data-dessert-details-modal]');
+const closeBtn = document.querySelector('[data-close-dessert-modal]');
 
-const closeBtn = document.querySelector(
-  '[data-close-dessert-modal]'
-);
+const modalImage = document.querySelector('[data-modal-image]');
+const modalTitle = document.querySelector('[data-modal-title]');
+const modalPrice = document.querySelector('[data-modal-price]');
+const modalRating = document.querySelector('[data-modal-rating]');
+const modalDescription = document.querySelector('[data-modal-description]');
+const modalIngredients = document.querySelector('[data-modal-ingredients]');
+const orderBtn = document.querySelector('.dessert-modal-order-btn');
 
-const modalImage = document.querySelector(
-  '[data-modal-image]'
-);
-
-const modalTitle = document.querySelector(
-  '[data-modal-title]'
-);
-
-const modalPrice = document.querySelector(
-  '[data-modal-price]'
-);
-
-const modalRating = document.querySelector(
-  '[data-modal-rating]'
-);
-
-const modalDescription = document.querySelector(
-  '[data-modal-description]'
-);
-
-const modalIngredients = document.querySelector(
-  '[data-modal-ingredients]'
-);
-
-const orderBtn = document.querySelector(
-  '.dessert-modal-order-btn'
-);
-
-const loader = document.querySelector(
-  '#dessert-loader'
-);
-
-const dessertList = document.querySelector(
-  '.dessert-gallery'
-);
-
-const bestsellersTrack = document.querySelector(
-  '#bestsellersTrack'
-);
+const loader = document.querySelector('#dessert-loader');
+const dessertList = document.querySelector('.dessert-gallery');
+const bestsellersTrack = document.querySelector('#bestsellersTrack');
 
 function handleDessertDetailsClick(event) {
   const button = event.target.closest('[data-id]');
@@ -67,15 +34,9 @@ function handleDessertDetailsClick(event) {
   openDessertModal(id);
 }
 
-dessertList?.addEventListener(
-  'click',
-  handleDessertDetailsClick
-);
+dessertList?.addEventListener('click', handleDessertDetailsClick);
 
-bestsellersTrack?.addEventListener(
-  'click',
-  handleDessertDetailsClick
-);
+bestsellersTrack?.addEventListener('click', handleDessertDetailsClick);
 
 closeBtn?.addEventListener('click', closeModal);
 
@@ -95,7 +56,7 @@ document.addEventListener('keydown', event => {
   }
 });
 
-orderBtn?.addEventListener('click', openOrderModal);
+orderBtn?.addEventListener('click', handleOrderBtnClick);
 
 async function openDessertModal(id) {
   if (!modal) {
@@ -117,9 +78,7 @@ async function openDessertModal(id) {
   } catch (error) {
     console.error(error);
 
-    showErrorToast(
-      'Не вдалося завантажити інформацію про десерт'
-    );
+    showErrorToast('Не вдалося завантажити інформацію про десерт');
 
     closeModal();
   } finally {
@@ -146,17 +105,16 @@ function renderDessertModal(dessert) {
   }
 
   if (modalDescription) {
-    modalDescription.textContent =
-      dessert.description || '';
+    modalDescription.textContent = dessert.description || '';
   }
 
   if (modalIngredients) {
-    modalIngredients.textContent =
-      dessert.composition || '';
+    modalIngredients.textContent = dessert.composition || '';
   }
 
+  const stars = getStarsMarkup(dessert.rate);
   if (modalRating) {
-    modalRating.textContent = '';
+    modalRating.innerHTML = stars;
   }
 
   if (orderBtn) {
@@ -203,14 +161,12 @@ function hideDessertLoader() {
   loader?.classList.add('is-hidden');
 }
 
-function openOrderModal() {
+function handleOrderBtnClick() {
   const dessertId = orderBtn?.dataset.id;
 
   closeModal();
 
-  // Здесь потом можно передать dessertId
-  // в модалку заказа.
-  console.log('Order dessert:', dessertId);
+  openModal(dessertId);
 }
 
 function closeModal() {

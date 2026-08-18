@@ -1,16 +1,14 @@
 import { createDessertCardMarkup } from './product-card.js';
 
 const API = {
-  products:
-    'https://deserts-store.b.goit.study/api/desserts?type=popular',
+  products: 'https://deserts-store.b.goit.study/api/desserts?type=popular',
 };
 
 const DEMO_PRODUCTS = [
   {
     _id: '1',
     name: 'Брауні з горіхами',
-    description:
-      'Соковитий шоколадний брауні з хрусткими горіхами.',
+    description: 'Соковитий шоколадний брауні з хрусткими горіхами.',
     price: 110,
     category: {
       name: 'Шоколадна випічка',
@@ -21,8 +19,7 @@ const DEMO_PRODUCTS = [
   {
     _id: '2',
     name: 'Фруктовий тарт',
-    description:
-      'Ніжний тарт з ягідним кремом та свіжими фруктами.',
+    description: 'Ніжний тарт з ягідним кремом та свіжими фруктами.',
     price: 140,
     category: {
       name: 'Фруктові десерти',
@@ -33,8 +30,7 @@ const DEMO_PRODUCTS = [
   {
     _id: '3',
     name: 'Лавандовий чіз',
-    description:
-      'Ніжний чіз з нотками лаванди та ягідним соусом.',
+    description: 'Ніжний чіз з нотками лаванди та ягідним соусом.',
     price: 90,
     category: {
       name: 'Незабутні десерти',
@@ -48,13 +44,9 @@ class BestsellersSlider {
   constructor(data) {
     this.data = data;
 
-    this.track = document.getElementById(
-      'bestsellersTrack'
-    );
+    this.track = document.getElementById('bestsellersTrack');
 
-    this.dotsContainer = document.getElementById(
-      'bestsellersDots'
-    );
+    this.dotsContainer = document.getElementById('bestsellersDots');
 
     this.prevBtn = document.getElementById('prevBtn');
     this.nextBtn = document.getElementById('nextBtn');
@@ -87,10 +79,7 @@ class BestsellersSlider {
     this.updateSlider();
     this.bindEvents();
 
-    window.addEventListener(
-      'resize',
-      this.handleResize.bind(this)
-    );
+    window.addEventListener('resize', this.handleResize.bind(this));
   }
 
   renderCards() {
@@ -116,28 +105,20 @@ class BestsellersSlider {
 
     this.cardsPerView = this.getCardsPerView();
 
-    this.totalSlides = Math.max(
-      0,
-      this.data.length - this.cardsPerView
-    );
+    this.totalSlides = Math.max(0, this.data.length - this.cardsPerView);
 
     if (this.currentIndex > this.totalSlides) {
       this.currentIndex = this.totalSlides;
     }
 
-    const firstSlide = this.track.querySelector(
-      '.bestsellers-track__item'
-    );
+    const firstSlide = this.track.querySelector('.bestsellers-track__item');
 
     if (firstSlide) {
       const slideWidth = firstSlide.offsetWidth;
 
-      const gap = parseFloat(
-        getComputedStyle(this.track).gap
-      );
+      const gap = parseFloat(getComputedStyle(this.track).gap);
 
-      const offset =
-        this.currentIndex * (slideWidth + gap);
+      const offset = this.currentIndex * (slideWidth + gap);
 
       this.track.style.transform = `translate3d(-${offset}px, 0, 0)`;
     }
@@ -161,21 +142,13 @@ class BestsellersSlider {
       dot.type = 'button';
 
       dot.className =
-        'bestsellers__dot' +
-        (i === this.currentIndex
-          ? ' active'
-          : '');
+        'bestsellers__dot' + (i === this.currentIndex ? ' active' : '');
 
-      dot.setAttribute(
-        'aria-label',
-        `Слайд ${i + 1}`
-      );
+      dot.setAttribute('aria-label', `Слайд ${i + 1}`);
 
       dot.setAttribute(
         'aria-current',
-        i === this.currentIndex
-          ? 'true'
-          : 'false'
+        i === this.currentIndex ? 'true' : 'false'
       );
 
       dot.addEventListener('click', () => {
@@ -192,11 +165,9 @@ class BestsellersSlider {
       return;
     }
 
-    this.prevBtn.disabled =
-      this.currentIndex === 0;
+    this.prevBtn.disabled = this.currentIndex === 0;
 
-    this.nextBtn.disabled =
-      this.currentIndex >= this.totalSlides;
+    this.nextBtn.disabled = this.currentIndex >= this.totalSlides;
   }
 
   next() {
@@ -214,28 +185,22 @@ class BestsellersSlider {
   }
 
   handleResize() {
-  const newCardsPerView = this.getCardsPerView();
+    const newCardsPerView = this.getCardsPerView();
 
-  if (newCardsPerView !== this.cardsPerView) {
-    this.currentIndex = 0;
+    if (newCardsPerView !== this.cardsPerView) {
+      this.currentIndex = 0;
+    }
+
+    this.updateSlider();
   }
-
-  this.updateSlider();
-}
   bindEvents() {
-    this.nextBtn?.addEventListener(
-      'click',
-      () => {
-        this.next();
-      }
-    );
+    this.nextBtn?.addEventListener('click', () => {
+      this.next();
+    });
 
-    this.prevBtn?.addEventListener(
-      'click',
-      () => {
-        this.prev();
-      }
-    );
+    this.prevBtn?.addEventListener('click', () => {
+      this.prev();
+    });
 
     let startX = 0;
     let startY = 0;
@@ -273,15 +238,10 @@ class BestsellersSlider {
 
         isDragging = false;
 
-        // Якщо рух переважно вертикальний —
-        // не перемикаємо слайд
-        if (
-          Math.abs(diffY) > Math.abs(diffX)
-        ) {
+        if (Math.abs(diffY) > Math.abs(diffX)) {
           return;
         }
 
-        // Мінімальна відстань свайпу
         if (Math.abs(diffX) < 50) {
           return;
         }
@@ -304,22 +264,15 @@ async function loadBestsellers() {
     const response = await fetch(API.products);
 
     if (!response.ok) {
-      throw new Error(
-        `Помилка HTTP: ${response.status}`
-      );
+      throw new Error(`Помилка HTTP: ${response.status}`);
     }
 
     const data = await response.json();
 
     const desserts = data.desserts || data;
 
-    if (
-      !Array.isArray(desserts) ||
-      desserts.length === 0
-    ) {
-      console.warn(
-        'API повернуло порожній список, використовую демо-дані'
-      );
+    if (!Array.isArray(desserts) || desserts.length === 0) {
+      console.warn('API повернуло порожній список, використовую демо-дані');
 
       new BestsellersSlider(DEMO_PRODUCTS);
 
@@ -337,7 +290,4 @@ async function loadBestsellers() {
   }
 }
 
-document.addEventListener(
-  'DOMContentLoaded',
-  loadBestsellers
-);
+document.addEventListener('DOMContentLoaded', loadBestsellers);
