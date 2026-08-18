@@ -1,11 +1,9 @@
-// Всі змінні іменовані по camelCase'u,
-// класи по PascalCase'u,
-// константи по UPPER_SNAKE_CASE'u.
-
 import { PER_PAGE } from './constants.js';
+import { getCategories, getDessertsList } from "./api/dessert-list-api.js"
+import { createDessertCardMarkup } from './product-card.js';
 
-const filtersContainer = document.querySelector('.dessert-filters');
-const categoriesList = document.querySelector('.dessert-filters__list');
+const filtersContainer = document.querySelector(".dessert-filters");
+const categoriesList = document.querySelector(".dessert-filters__list");
 const dropdownBtn = document.getElementById('dessert-dropdown-btn');
 const selectedCategoryName = document.getElementById('selected-category-name');
 const gallery = document.querySelector('.dessert-gallery');
@@ -15,7 +13,6 @@ const loadMoreBtn = document.querySelector('.dessert-list__load-more-btn');
 let activeCategory = 'all';
 let currentPage = 1;
 
-import { getCategories, getDessertsList } from './api/dessert-list-api.js';
 
 async function loadDessertsByCategory() {
   showLoader();
@@ -120,38 +117,17 @@ function createDessertFilter(categories) {
 function createDessertGallery(images) {
   if (!gallery) return;
 
-  const markup = images
-    .map(
-      ({
-        _id,
-        name,
-        description,
-        price,
-        category: { name: categoryName },
-        image,
-      }) => `
-       <li class="gallery-list__product-item">
-         <img 
-          class="gallery-list__product-image"
-          src="${image}"
-          alt="${name}"
-          id="${_id}"
-          loading="lazy"
-        />
-        <p class="gallery-list__product-category">${categoryName}</p>
-        <h3 class="gallery-list__product-title">${name}</h3>
-        <p class="gallery-list__product-description">${description}</p>
-        <div class="gallery-list__product-bottom">
-          <span class="gallery-list__product-price">${price} грн</span>
-          <button type="button" class="gallery-details-btn" data-id="${_id}">↗</button>
-        </div>
-       </li>
-    `
-    )
-    .join('');
+    const markup = images
+      .map(item => `
+         <li class="gallery-list__product-item product__item">
+           ${createDessertCardMarkup(item)}
+         </li>
+      `)
+      .join("");
 
-  gallery.insertAdjacentHTML('beforeend', markup);
+    gallery.insertAdjacentHTML('beforeend', markup);
 }
+
 
 filtersContainer?.addEventListener('click', event => {
   const clickedBtn = event.target.closest('.dessert-filters__btn');
