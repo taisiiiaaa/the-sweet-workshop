@@ -39,7 +39,7 @@ import{a as $,T as st,S as nt,N as yt,A as bt}from"./assets/vendor-BeY3HugT.js";
               height="24"
               aria-hidden="true"
             >
-              <use href="/images/icons.svg#arrow-up-right"></use>
+              <use href="images/icons.svg#arrow-up-right"></use>
             </svg>
           </button>
         </div>
