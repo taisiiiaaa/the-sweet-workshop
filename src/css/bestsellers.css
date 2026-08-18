@@ -239,11 +239,6 @@
         flex: 0 0 calc((100% - 16px) / 2);
     }
 
-    /* .dessert-card {
-        flex: 0 0 calc((100% - 16px) / 2);
-        height: 440px;
-    } */
-
     .dessert-card__image {
         height: 234px;
     }

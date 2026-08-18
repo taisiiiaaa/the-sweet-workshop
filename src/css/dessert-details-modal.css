@@ -125,7 +125,8 @@
 }
 
 .ic-cross {
-  fill: #f19898;
+  fill: #080c0c;
+  stroke: #080c0c;
 }
 
 /* =========================
@@ -148,6 +149,13 @@
 .dessert-info {
   display: flex;
   flex-direction: column;
+  gap: 24px;
+}
+
+.dessert-modal-title-price {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .dessert-modal-title {

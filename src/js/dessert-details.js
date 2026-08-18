@@ -1,5 +1,7 @@
 import { getDessertDetails } from './api/dessert-details-api';
 import { showErrorToast } from './toast';
+import { openModal } from './order-modal.js';
+import { getStarsMarkup } from './helpers.js';
 
 const modal = document.querySelector(
   '[data-dessert-details-modal]'

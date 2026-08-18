@@ -1,10 +1,11 @@
-import { createDessertCardMarkup } from './product-card.js';
+
 
 const API = {
   products:
     'https://deserts-store.b.goit.study/api/desserts?type=popular',
 };
 
+import { createDessertCardMarkup } from './product-card.js';
 
 const DEMO_PRODUCTS = [
   {
