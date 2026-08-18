@@ -7,7 +7,7 @@ const categoriesList = document.querySelector(".dessert-filters__list");
 const dropdownBtn = document.getElementById('dessert-dropdown-btn');
 const selectedCategoryName = document.getElementById('selected-category-name');
 const gallery = document.querySelector('.dessert-gallery');
-const loaderElement = document.querySelector('#loader');
+const loaderElement = document.querySelector('.loader');
 const loadMoreBtn = document.querySelector('.dessert-list__load-more-btn');
 
 let activeCategory = 'all';
