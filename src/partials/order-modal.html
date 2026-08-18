@@ -22,6 +22,10 @@
           name="name"
           placeholder="Вікторія"
           required
+          minlength="2"
+          maxlength="50"
+          pattern="[A-Za-zА-Яа-яІіЇїЄєҐґ\s]+"
+          title="Ім’я може містити лише літери та пробіли"
         />
       </div>
 
@@ -34,6 +38,8 @@
           name="phone"
           placeholder="38 0__ ______"
           required
+          pattern="^\+?[0-9]\s?(-)?[0-9]{10,20}$"
+          title="Введіть коректний номер телефону"
         />
       </div>
 

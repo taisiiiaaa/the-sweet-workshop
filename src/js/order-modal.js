@@ -45,6 +45,11 @@ function setLoading(isLoading) {
 async function handleSubmit(event) {
   event.preventDefault();
 
+  if (!form.checkValidity()) {
+    form.reportValidity();
+    return;
+  }
+
   const formData = new FormData(form);
 
   const order = {
