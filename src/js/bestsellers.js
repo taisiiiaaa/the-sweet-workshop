@@ -1,17 +1,16 @@
-
+import { createDessertCardMarkup } from './product-card.js';
 
 const API = {
   products:
     'https://deserts-store.b.goit.study/api/desserts?type=popular',
 };
 
-import { createDessertCardMarkup } from './product-card.js';
-
 const DEMO_PRODUCTS = [
   {
     _id: '1',
     name: 'Брауні з горіхами',
-    description: 'Соковитий шоколадний брауні з хрусткими горіхами.',
+    description:
+      'Соковитий шоколадний брауні з хрусткими горіхами.',
     price: 110,
     category: {
       name: 'Шоколадна випічка',
@@ -23,7 +22,7 @@ const DEMO_PRODUCTS = [
     _id: '2',
     name: 'Фруктовий тарт',
     description:
-      'Ніжний тарт з ягідним кремом та свіжими фруктами',
+      'Ніжний тарт з ягідним кремом та свіжими фруктами.',
     price: 140,
     category: {
       name: 'Фруктові десерти',
@@ -49,8 +48,14 @@ class BestsellersSlider {
   constructor(data) {
     this.data = data;
 
-    this.track = document.getElementById('bestsellersTrack');
-    this.dotsContainer = document.getElementById('bestsellersDots');
+    this.track = document.getElementById(
+      'bestsellersTrack'
+    );
+
+    this.dotsContainer = document.getElementById(
+      'bestsellersDots'
+    );
+
     this.prevBtn = document.getElementById('prevBtn');
     this.nextBtn = document.getElementById('nextBtn');
 
@@ -62,11 +67,11 @@ class BestsellersSlider {
   }
 
   getCardsPerView() {
-    if (window.innerWidth <= 640) {
+    if (window.innerWidth < 768) {
       return 1;
     }
 
-    if (window.innerWidth <= 1024) {
+    if (window.innerWidth < 1440) {
       return 2;
     }
 
@@ -74,6 +79,10 @@ class BestsellersSlider {
   }
 
   init() {
+    if (!this.track) {
+      return;
+    }
+
     this.renderCards();
     this.updateSlider();
     this.bindEvents();
@@ -85,7 +94,9 @@ class BestsellersSlider {
   }
 
   renderCards() {
-    if (!this.track) return;
+    if (!this.track) {
+      return;
+    }
 
     this.track.innerHTML = this.data
       .map(
@@ -99,6 +110,10 @@ class BestsellersSlider {
   }
 
   updateSlider() {
+    if (!this.track) {
+      return;
+    }
+
     this.cardsPerView = this.getCardsPerView();
 
     this.totalSlides = Math.max(
@@ -110,16 +125,21 @@ class BestsellersSlider {
       this.currentIndex = this.totalSlides;
     }
 
-    const firstCard =
-      this.track?.querySelector('.dessert-card');
+    const firstSlide = this.track.querySelector(
+      '.bestsellers-track__item'
+    );
 
-    if (firstCard) {
-      const cardWidth = firstCard.offsetWidth;
-      const gap = window.innerWidth <= 767 ? 32 : 24;
+    if (firstSlide) {
+      const slideWidth = firstSlide.offsetWidth;
 
-      this.track.style.transform = `translateX(-${
-        this.currentIndex * (cardWidth + gap)
-      }px)`;
+      const gap = parseFloat(
+        getComputedStyle(this.track).gap
+      );
+
+      const offset =
+        this.currentIndex * (slideWidth + gap);
+
+      this.track.style.transform = `translate3d(-${offset}px, 0, 0)`;
     }
 
     this.renderDots();
@@ -139,11 +159,24 @@ class BestsellersSlider {
       const dot = document.createElement('button');
 
       dot.type = 'button';
-      dot.className = `bestsellers__dot ${
-        i === this.currentIndex ? 'active' : ''
-      }`;
 
-      dot.setAttribute('aria-label', `Слайд ${i + 1}`);
+      dot.className =
+        'bestsellers__dot' +
+        (i === this.currentIndex
+          ? ' active'
+          : '');
+
+      dot.setAttribute(
+        'aria-label',
+        `Слайд ${i + 1}`
+      );
+
+      dot.setAttribute(
+        'aria-current',
+        i === this.currentIndex
+          ? 'true'
+          : 'false'
+      );
 
       dot.addEventListener('click', () => {
         this.currentIndex = i;
@@ -159,7 +192,8 @@ class BestsellersSlider {
       return;
     }
 
-    this.prevBtn.disabled = this.currentIndex === 0;
+    this.prevBtn.disabled =
+      this.currentIndex === 0;
 
     this.nextBtn.disabled =
       this.currentIndex >= this.totalSlides;
@@ -180,42 +214,48 @@ class BestsellersSlider {
   }
 
   handleResize() {
-    const newCardsPerView = this.getCardsPerView();
+    const newCardsPerView =
+      this.getCardsPerView();
 
-    if (newCardsPerView !== this.cardsPerView) {
+    if (
+      newCardsPerView !== this.cardsPerView
+    ) {
+      this.currentIndex = 0;
       this.updateSlider();
+      return;
     }
+
+    this.updateSlider();
   }
 
   bindEvents() {
-    this.nextBtn?.addEventListener('click', () => {
-      this.next();
-    });
+    this.nextBtn?.addEventListener(
+      'click',
+      () => {
+        this.next();
+      }
+    );
 
-    this.prevBtn?.addEventListener('click', () => {
-      this.prev();
-    });
+    this.prevBtn?.addEventListener(
+      'click',
+      () => {
+        this.prev();
+      }
+    );
 
     let startX = 0;
+    let startY = 0;
     let isDragging = false;
 
     this.track?.addEventListener(
       'touchstart',
       event => {
-        startX = event.touches[0].clientX;
-        isDragging = true;
-      },
-      {
-        passive: true,
-      }
-    );
+        const touch = event.touches[0];
 
-    this.track?.addEventListener(
-      'touchmove',
-      () => {
-        if (!isDragging) {
-          return;
-        }
+        startX = touch.clientX;
+        startY = touch.clientY;
+
+        isDragging = true;
       },
       {
         passive: true,
@@ -229,18 +269,37 @@ class BestsellersSlider {
           return;
         }
 
-        const endX = event.changedTouches[0].clientX;
-        const diff = startX - endX;
+        const touch = event.changedTouches[0];
 
-        if (Math.abs(diff) > 50) {
-          if (diff > 0) {
-            this.next();
-          } else {
-            this.prev();
-          }
-        }
+        const endX = touch.clientX;
+        const endY = touch.clientY;
+
+        const diffX = startX - endX;
+        const diffY = startY - endY;
 
         isDragging = false;
+
+        // Якщо рух переважно вертикальний —
+        // не перемикаємо слайд
+        if (
+          Math.abs(diffY) > Math.abs(diffX)
+        ) {
+          return;
+        }
+
+        // Мінімальна відстань свайпу
+        if (Math.abs(diffX) < 50) {
+          return;
+        }
+
+        if (diffX > 0) {
+          this.next();
+        } else {
+          this.prev();
+        }
+      },
+      {
+        passive: true,
       }
     );
   }
@@ -251,19 +310,25 @@ async function loadBestsellers() {
     const response = await fetch(API.products);
 
     if (!response.ok) {
-      throw new Error(`Помилка HTTP: ${response.status}`);
+      throw new Error(
+        `Помилка HTTP: ${response.status}`
+      );
     }
 
     const data = await response.json();
 
     const desserts = data.desserts || data;
 
-    if (!Array.isArray(desserts) || desserts.length === 0) {
+    if (
+      !Array.isArray(desserts) ||
+      desserts.length === 0
+    ) {
       console.warn(
         'API повернуло порожній список, використовую демо-дані'
       );
 
       new BestsellersSlider(DEMO_PRODUCTS);
+
       return;
     }
 
@@ -278,4 +343,7 @@ async function loadBestsellers() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', loadBestsellers);
+document.addEventListener(
+  'DOMContentLoaded',
+  loadBestsellers
+);
