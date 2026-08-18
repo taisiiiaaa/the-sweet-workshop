@@ -1,8 +1,6 @@
 import { createDessertCardMarkup } from './product-card.js';
+import { fetchBestsellers } from './api/bestsellers-api.js';
 
-const API = {
-  products: 'https://deserts-store.b.goit.study/api/desserts?type=popular',
-};
 
 const DEMO_PRODUCTS = [
   {
@@ -261,15 +259,7 @@ class BestsellersSlider {
 
 async function loadBestsellers() {
   try {
-    const response = await fetch(API.products);
-
-    if (!response.ok) {
-      throw new Error(`Помилка HTTP: ${response.status}`);
-    }
-
-    const data = await response.json();
-
-    const desserts = data.desserts || data;
+    const desserts = await fetchBestsellers();
 
     if (!Array.isArray(desserts) || desserts.length === 0) {
       console.warn('API повернуло порожній список, використовую демо-дані');
