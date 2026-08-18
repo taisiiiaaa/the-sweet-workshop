@@ -138,7 +138,9 @@
   cursor: pointer;
   text-decoration: none;
   border-bottom: 2px solid transparent;
-  transition: border-bottom-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition:
+    border-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .dessert-filters__btn:hover {
@@ -252,7 +254,7 @@
 
   .dessert-list__load-more-btn {
     width: 344px;
-    padding: 10px 103.5px;
+    padding: 10px 104px;
   }
 }
 
@@ -349,6 +351,6 @@
 
   .dessert-list__load-more-btn {
     width: 198px;
-    padding: 10px 30.5px;
+    padding: 10px 31px;
   }
 }

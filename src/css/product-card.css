@@ -9,12 +9,6 @@
   box-sizing: border-box;
 }
 
-.product-card__content {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-}
-
 .product__image {
   border-radius: 8px;
   width: 100%;
@@ -22,6 +16,12 @@
   margin-bottom: 16px;
   object-fit: cover;
   flex-shrink: 0;
+}
+
+.product-card__content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 .product__category,
@@ -55,7 +55,6 @@
   font-weight: 400;
   font-size: 14px;
   flex-grow: 1;
-  margin-bottom: 16px;
 
   display: -webkit-box;
   -webkit-line-clamp: 2;
