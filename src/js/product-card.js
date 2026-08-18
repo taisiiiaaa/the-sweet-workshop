@@ -43,7 +43,7 @@ export function createDessertCardMarkup(item) {
               height="24"
               aria-hidden="true"
             >
-              <use href="/images/icons.svg#arrow-up-right"></use>
+              <use href="images/icons.svg#arrow-up-right"></use>
             </svg>
           </button>
         </div>
