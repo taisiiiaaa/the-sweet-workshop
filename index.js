@@ -39,13 +39,13 @@ import{r as e}from"./assets/rolldown-runtime-hePW80VL.js";import{a as t,i as n,n
               height="24"
               aria-hidden="true"
             >
-              <use href="./images/icons.svg#arrow-up-right"></use>
+              <use href="images/icons.svg#arrow-up-right"></use>
             </svg>
           </button>
         </div>
       </div>
     </article>
-  `}var l=document.querySelector(`.dessert-filters`),u=document.querySelector(`.dessert-filters__list`),d=document.getElementById(`dessert-dropdown-btn`),f=document.getElementById(`selected-category-name`),p=document.querySelector(`.dessert-gallery`),m=document.querySelector(`#loader`),h=document.querySelector(`.dessert-list__load-more-btn`),g=`all`,_=1;async function v(){b(),C(),_=1,p&&(p.innerHTML=``);try{let e=await c({page:_,limit:8,category:g});y(e.desserts||[]),e.totalItems>8?S():C()}catch(e){console.error(e)}finally{x()}}async function te(){_+=1,b(),C();try{let e=await c({page:_,limit:8,category:g}),t=e.desserts||[];y(t),(p?p.children.length:0)>=e.totalItems||t.length<8?C():S()}catch(e){console.error(e),S()}finally{x()}}async function ne(){b();try{re(await s()),await v()}catch(e){console.error(e)}finally{x()}}function re(e){if(!u)return;let t=`
+  `}var l=document.querySelector(`.dessert-filters`),u=document.querySelector(`.dessert-filters__list`),d=document.getElementById(`dessert-dropdown-btn`),f=document.getElementById(`selected-category-name`),p=document.querySelector(`.dessert-gallery`),m=document.querySelector(`.loader`),h=document.querySelector(`.dessert-list__load-more-btn`),g=`all`,_=1;async function v(){b(),C(),_=1,p&&(p.innerHTML=``);try{let e=await c({page:_,limit:8,category:g});y(e.desserts||[]),e.totalItems>8?S():C()}catch(e){console.error(e)}finally{x()}}async function te(){_+=1,b(),C();try{let e=await c({page:_,limit:8,category:g}),t=e.desserts||[];y(t),(p?p.children.length:0)>=e.totalItems||t.length<8?C():S()}catch(e){console.error(e),S()}finally{x()}}async function ne(){b();try{re(await s()),await v()}catch(e){console.error(e)}finally{x()}}function re(e){if(!u)return;let t=`
       <li class="dessert-filters__item">
         <button type="button" class="dessert-filters__btn is-active" data-category="all">
         Всі десерти
