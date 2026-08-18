@@ -62,7 +62,7 @@ function createSwiper(feedback) {
 
   loader.classList.remove('loader');
 
-  const swiper = new Swiper('.mySwiper', {
+  const swiper = new Swiper('.feedback__swiper', {
     slidesPerView: 1,
     spaceBetween: 16,
     loop: true,
