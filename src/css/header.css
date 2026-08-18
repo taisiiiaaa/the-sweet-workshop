@@ -84,13 +84,13 @@
 }
 
 .no-scroll {
-    overflow: hidden;
-    height: 100%;
+  overflow: hidden;
+  height: 100%;
 }
 
 html.no-scroll {
-    overflow: hidden;
-    height: 100%;
+  overflow: hidden;
+  height: 100%;
 }
 
 .header-nav-list {
@@ -133,7 +133,6 @@ html.no-scroll {
 .header-btn-order {
     display: none;
 }
-
 
 @media only screen and (min-width: 768px) {
     .header-btn-order {

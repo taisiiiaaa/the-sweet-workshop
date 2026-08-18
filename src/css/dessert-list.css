@@ -6,6 +6,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  position: relative;
 }
 
 .dessert-filters-container {
@@ -45,11 +46,11 @@
 
 #dessert-dropdown-btn {
   display: flex;
-  align-items: start;
+  align-items: center;
   justify-content: space-between;
   border: 2px solid #202424;
   border-radius: 6px;
-  padding: 8px 12px;
+  padding: 8px 8px 8px 12px;
   max-width: 335px;
   width: 100%;
   height: 40px;
@@ -60,15 +61,29 @@
   line-height: 1.5;
   color: #080c0c;
   cursor: pointer;
+  transition:
+    border-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 #dessert-dropdown-btn.is-open {
   background-color: #ebfcfb;
 }
 
+.dessert-filters__arrow-icon {
+  flex-shrink: 0;
+  margin-left: auto;
+  transition: transform 250ms ease;
+  fill: rgba(8, 12, 12, 0.6);
+}
+
+#dessert-dropdown-btn.is-open .dessert-filters__arrow-icon {
+  transform: rotate(180deg);
+}
+
 .dessert-filters__list {
   display: none;
-
   position: absolute;
   top: calc(100% + 2px);
   left: 0;
@@ -86,6 +101,7 @@
 
 .dessert-filters__list.is-open {
   display: flex;
+  flex-direction: column;
   gap: 24px;
 }
 
@@ -121,18 +137,20 @@
   color: #080c0c;
   cursor: pointer;
   text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition:
+    border-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .dessert-filters__btn:hover {
   text-decoration: none;
-  border-bottom: 1px solid #080c0c;
+  border-bottom-color: #080c0c;
 }
 
 .dessert-filters__btn.is-active {
   text-decoration: none;
-  color: #060606;
-  border-bottom: 2px solid #080c0c;
-  font-weight: 500;
+  border-bottom-color: #080c0c;
 }
 
 .dessert-gallery {
@@ -143,119 +161,54 @@
 }
 
 .gallery-list__product-item {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid #080c0c;
-  border-radius: 16px;
-  padding: 16px;
-  max-width: 335px;
   width: 100%;
-  height: 433px;
-  min-width: 312px;
-}
-
-.gallery-list__product-image {
-  border-radius: 8px;
-  max-width: 303px;
-  width: 100%;
-  height: 227px;
-  margin-bottom: 16px;
-  object-fit: cover;
-}
-
-.gallery-list__product-category {
-  font-family: 'Work Sans', sans-serif;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 1.5;
-  color: #080c0c;
-  margin-bottom: 12px;
-}
-
-.gallery-list__product-title {
-  font-family: 'Work Sans', sans-serif;
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 1.5;
-  color: #080c0c;
-  margin-bottom: 4px;
-}
-
-.gallery-list__product-description {
-  font-family: 'Work Sans', sans-serif;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 1.5;
-  color: #080c0c;
-}
-
-.gallery-list__product-price {
-  font-family: 'Work Sans', sans-serif;
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 1.5;
-  color: #080c0c;
-}
-
-.gallery-list__product-bottom {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: auto;
-}
-
-.gallery-details-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid #080c0c;
-  border-radius: 100px;
-  /* padding: 10px; */
-  width: 44px;
-  height: 44px;
-  padding: 0;
-  background-color: transparent;
-  cursor: pointer;
+  height: auto;
 }
 
 .dessert-list__load-more-btn {
-  display: block;
-  border: 1px solid #f19898;
+  display: flex;
+  border: 2px solid #f19898;
   border-radius: 100px;
   padding: 10px 24px;
   width: 100%;
-  max-width: 335px;
   height: 44px;
-  background: #f19898;
+  background-color: #f19898;
   font-family: 'Work Sans', sans-serif;
   font-weight: 500;
   font-size: 16px;
   line-height: 1.5;
   color: #080c0c;
   margin-inline: auto;
+  align-items: center;
+  justify-content: center;
+  transition:
+    border 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .dessert-list__load-more-btn:hover,
 .dessert-list__load-more-btn:focus {
-  border: 2px solid #080c0c;
+  border-color: #080c0c;
   background-color: transparent;
 }
 
+.dessert-list__load-more-btn:active {
+  background-color: #f5b6b6;
+}
+
 .dessert-list__load-more-btn.is-active {
-  border: 2px solid #080c0c;
+  border-color: #080c0c;
   background: #f5b6b6;
 }
 
-.dessert-list__loader-wrapper {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  margin-top: 24px;
+.dessert-list__container .loader {
+  margin: 0 auto;
+  pointer-events: none;
 }
 
 .is-hidden {
   display: none;
+  pointer-events: all;
 }
 
 @media only screen and (min-width: 768px) {
@@ -268,12 +221,16 @@
 
   .dessert-list__text-box {
     margin-bottom: 0px;
-    width: 432px;
+    width: 422px;
   }
 
   .dessert-list__title {
     text-align: start;
     margin-bottom: 8px;
+  }
+
+  .dessert-list__subtitle {
+    text-align: start;
   }
 
   .dessert-filters {
@@ -282,25 +239,23 @@
     margin-right: 0;
   }
 
+  #dessert-dropdown-btn {
+    padding: 8px 12px;
+  }
+
   .dessert-gallery {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 32px 16px;
   }
 
   .gallery-list__product-item {
-    width: 344px;
-    height: 440px;
-    padding: 16px;
-  }
-
-  .gallery-list__product-image {
-    width: 312px;
-    height: 234px;
+    width: 100%;
   }
 
   .dessert-list__load-more-btn {
     width: 344px;
+    padding: 10px 104px;
   }
 }
 
@@ -312,6 +267,8 @@
 
   .dessert-list__text-box {
     margin-bottom: 40px;
+    max-width: 768px;
+    width: 100%;
   }
 
   .dessert-list {
@@ -370,13 +327,18 @@
     padding: 10px 24px;
     background-color: #f5fdfd;
     text-align: center;
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .dessert-filters__btn:hover,
   .dessert-filters__btn:focus {
     background-color: #f19898;
     text-decoration: none;
-    border-bottom: 2px solid #080c0c;
+    border-color: #080c0c;
+  }
+
+  .dessert-filters__btn:active {
+    background-color: #f5b6b6;
   }
 
   .dessert-filters__btn.is-active {
@@ -385,21 +347,16 @@
   }
 
   .dessert-gallery {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 40px 24px;
   }
 
   .gallery-list__product-item {
-    width: 310px;
-    height: 431px;
-  }
-
-  .gallery-list__product-image {
-    width: 278px;
-    height: 209px;
+    width: 100%;
   }
 
   .dessert-list__load-more-btn {
     width: 198px;
+    padding: 10px 31px;
   }
 }
