@@ -13,10 +13,9 @@
       referrerpolicy="no-referrer"
     />
     <script type="module" crossorigin src="/the-sweet-workshop/index.js"></script>
-    <link rel="modulepreload" crossorigin href="/the-sweet-workshop/assets/rolldown-runtime-hePW80VL.js">
-    <link rel="modulepreload" crossorigin href="/the-sweet-workshop/assets/vendor-BpLDxmXG.js">
-    <link rel="stylesheet" crossorigin href="/the-sweet-workshop/assets/vendor-DW4VASFQ.css">
-    <link rel="stylesheet" crossorigin href="/the-sweet-workshop/assets/index-BTZOawoe.css">
+    <link rel="modulepreload" crossorigin href="/the-sweet-workshop/assets/vendor-BeY3HugT.js">
+    <link rel="stylesheet" crossorigin href="/the-sweet-workshop/assets/vendor-DUAHK6tA.css">
+    <link rel="stylesheet" crossorigin href="/the-sweet-workshop/assets/index-K0JYpDFb.css">
   </head>
   <body>
     <header class="header">
@@ -106,6 +105,58 @@
   </div>
 </section>
 
+      <section id="bestsellers" class="bestsellers">
+  <div class="container bestsellers__container">
+    <h2 class="bestsellers__title">Наші бестселери</h2>
+
+    <div class="bestsellers__slider-wrapper">
+      <div class="bestsellers__track-container">
+        <div class="bestsellers__track" id="bestsellersTrack"></div>
+      </div>
+
+      <div class="bestsellers__nav">
+        <div class="bestsellers__dots" id="bestsellersDots"></div>
+
+        <div class="bestsellers__arrows">
+          <button
+            type="button"
+            class="bestsellers__arrow"
+            id="prevBtn"
+            aria-label="Попередній"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
+          </button>
+
+          <button
+            type="button"
+            class="bestsellers__arrow"
+            id="nextBtn"
+            aria-label="Наступний"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M9 18l6-6-6-6" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
       <section id="dessert-list" class="dessert-list">
   <div class="container dessert-list__container">
     <div class="dessert-filters-container">
@@ -143,7 +194,7 @@
       Завантажити ще
     </button>
 
-    <div id="loader" class="loader is-hidden"></div>
+    <div id="dessert-list-loader" class="loader is-hidden"></div>
   </div>
 </section>
 
@@ -641,16 +692,16 @@
       type="button"
       aria-label="Закрити модальне вікно"
     >
-      ×
+      <svg class="ic-cross" width="24" height="24">
+        <use href="/the-sweet-workshop/assets/icons-BKESDM8N.svg#cross"></use>
+      </svg>
     </button>
 
     <h2 class="order-modal__title">Оформлення замовлення</h2>
 
     <form class="order-modal__form">
       <div class="order-modal__field">
-        <label class="order-modal__label" for="order-name">
-          Ім’я*
-        </label>
+        <label class="order-modal__label" for="order-name"> Ім’я* </label>
         <input
           class="order-modal__input"
           id="order-name"
@@ -662,9 +713,7 @@
       </div>
 
       <div class="order-modal__field">
-        <label class="order-modal__label" for="order-phone">
-          Телефон*
-        </label>
+        <label class="order-modal__label" for="order-phone"> Телефон* </label>
         <input
           class="order-modal__input"
           id="order-phone"
@@ -694,6 +743,7 @@
     </form>
   </div>
 </div>
+
 
   </body>
 </html>
