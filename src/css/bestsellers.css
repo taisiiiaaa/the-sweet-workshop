@@ -179,7 +179,7 @@
 
 .bestsellers__controls {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: space-between;
 
   width: 100%;
@@ -226,9 +226,9 @@
   }
 
   transition:
-    transform 300ms ease,
-    opacity 300ms ease,
-    visibility 300ms ease;
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .bestsellers__swiper-pagination .swiper-pagination-bullet-active {
@@ -263,8 +263,8 @@
   transform: none;
 
   transition:
-    background-color 250ms ease,
-    opacity 250ms ease;
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .bestsellers__swiper-button:hover:not(.swiper-button-disabled),
