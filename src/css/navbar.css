@@ -30,15 +30,15 @@
 }
 
 .navbar-logo {
-    display: inline-block;
-    color: #000;
+  display: inline-block;
+  color: #000;
 }
 
 .logo-icon {
-    display: block;
-    color: #000;
-    width: 158px;
-    height: 72px;
+  display: block;
+  color: #000;
+  width: 158px;
+  height: 72px;
 }
 
 .navbar-nav {
@@ -47,33 +47,33 @@
 }
 
 .navbar-list {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .navbar-link {
-    display: block;
-    font-family: "Work Sans", sans-serif;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 1.5;
-    padding-block: 12px;
-    color: #080c0c;
-    position: relative;
-    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-block;
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  padding-block: 12px;
+  color: #080c0c;
+  position: relative;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .navbar-link::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 10px;
-    width: 0;
-    height: 1px;
-    background-color: #000;
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 10px;
+  width: 0;
+  height: 1px;
+  background-color: #000;
 
-    transition: width 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: width 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .navbar-link:hover::after,
@@ -82,8 +82,8 @@
 }
 
 .navbar-link:active {
-    text-decoration-skip-ink: none;
-    color: #f19898;
+  text-decoration-skip-ink: none;
+  color: #f19898;
 }
 
 .navbar-order {
@@ -93,27 +93,27 @@
 }
 
 @media screen and (min-width: 768px) {
-  .off-screen-menu {
+  .navbar {
     display: none;
   }
 }
 
 .btn {
-    padding: 8px 20px;
-    border: 1px solid #f19898;
-    border-radius: 100px;
-    background-color: #f19898;
-    font-family: inherit;
-    color: inherit;
-    line-height: 1.5;
-    font-size: 16px;
-    font-weight: 500;
-    text-transform: capitalize;
-    outline: none;
-    transition:
-        background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-        box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1),
-        opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 8px 20px;
+  border: 1px solid #f19898;
+  border-radius: 100px;
+  background-color: #f19898;
+  font-family: inherit;
+  color: inherit;
+  line-height: 1.5;
+  font-size: 16px;
+  font-weight: 500;
+  text-transform: capitalize;
+  outline: none;
+  transition:
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .btn:hover,

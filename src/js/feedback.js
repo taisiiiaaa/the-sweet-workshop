@@ -3,7 +3,7 @@ import renderSlides from './feedback-render';
 import { showSuccessToast, showErrorToast } from './toast';
 import Swiper from 'swiper/bundle';
 
-const loader = document.querySelector('#loader');
+const loader = document.querySelector('#feedback-loader');
 
 let visibleBullets = 6;
 const BULLET_SIZE = 8;

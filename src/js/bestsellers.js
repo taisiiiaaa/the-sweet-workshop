@@ -8,7 +8,7 @@ import { fetchBestsellers } from './api/bestsellers-api.js';
 import { showErrorToast } from './toast';
 import { openDessertModal } from './dessert-details.js';
 
-const loader = document.querySelector('#loader');
+const loader = document.querySelector('#bestsellers-loader');
 const swiperWrapper = document.querySelector('.bestsellers__slider-wrapper');
 
 const VISIBLE_BULLETS = 6;
