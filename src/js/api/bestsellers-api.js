@@ -12,6 +12,4 @@ export async function fetchBestsellers() {
   const data = await response.json();
 
   return data.desserts || data;
-
 }
-

@@ -2,22 +2,33 @@
   <div class="container">
     <h2 class="bestsellers__title">Наші бестселери</h2>
 
-    <div class="bestsellers-swiper">
-      <button class="swiper-button swiper-button-next">
-        <svg class="swiper-arrow-icon">
-          <use href="./images/icons.svg#arrow-right"></use>
-        </svg>
-      </button>
-      <button class="swiper-button swiper-button-prev">
-        <svg class="swiper-arrow-icon">
-          <use href="./images/icons.svg#arrow-left"></use>
-        </svg>
-      </button>
+    <div class="bestsellers__swiper">
+      <div id="loader"></div>
 
-      <div class="swiper-pagination bestsellers__dots"></div>
+      <div class="swiper mySwiper">
+        <ul class="swiper-wrapper bestsellers__slider-wrapper"></ul>
+      </div>
 
-      <div class="swiper bestsellers__swiper">
-        <ul class="swiper-wrapper" id="bestsellersTrack"></ul>
+      <div class="bestsellers__controls">
+        <div class="bestsellers__swiper-pagination"></div>
+
+        <div class="bestsellers__navigation">
+          <div
+            class="bestsellers__swiper-button bestsellers__swiper-button-prev"
+          >
+            <svg class="swiper-arrow-icon">
+              <use href="./images/icons.svg#arrow-left"></use>
+            </svg>
+          </div>
+
+          <div
+            class="bestsellers__swiper-button bestsellers__swiper-button-next"
+          >
+            <svg class="swiper-arrow-icon">
+              <use href="./images/icons.svg#arrow-right"></use>
+            </svg>
+          </div>
+        </div>
       </div>
     </div>
   </div>

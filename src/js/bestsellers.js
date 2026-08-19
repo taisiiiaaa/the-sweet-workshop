@@ -1,122 +1,156 @@
 import Swiper from 'swiper/bundle';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
 import { createDessertCardMarkup } from './product-card.js';
 import { fetchBestsellers } from './api/bestsellers-api.js';
+import { showErrorToast } from './toast';
+import { openDessertModal } from './dessert-details.js';
 
-const DEMO_PRODUCTS = [
-  {
-    _id: '1',
-    name: 'Брауні з горіхами',
-    description: 'Соковитий шоколадний брауні з хрусткими горіхами.',
-    price: 110,
-    category: {
-      name: 'Шоколадна випічка',
-    },
-    image:
-      'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=600&h=400&fit=crop',
-  },
-  {
-    _id: '2',
-    name: 'Фруктовий тарт',
-    description: 'Ніжний тарт з ягідним кремом та свіжими фруктами.',
-    price: 140,
-    category: {
-      name: 'Фруктові десерти',
-    },
-    image:
-      'https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=600&h=400&fit=crop',
-  },
-  {
-    _id: '3',
-    name: 'Лавандовий чіз',
-    description: 'Ніжний чіз з нотками лаванди та ягідним соусом.',
-    price: 90,
-    category: {
-      name: 'Незабутні десерти',
-    },
-    image:
-      'https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=600&h=400&fit=crop',
-  },
-];
+const loader = document.querySelector('#loader');
+const swiperWrapper = document.querySelector('.bestsellers__slider-wrapper');
+
+const VISIBLE_BULLETS = 6;
+
+const BULLET_SIZE = 8;
+const BULLET_GAP = 8;
+const BULLET_STEP = BULLET_SIZE + BULLET_GAP;
 
 function renderBestsellers(products) {
-  const track = document.getElementById('bestsellersTrack');
-
-  if (!track) {
-    return;
-  }
-
-  track.innerHTML = products
+  swiperWrapper.innerHTML = products
     .map(
-      product => `
-        <li class="swiper-slide bestsellers-track__item">
-          ${createDessertCardMarkup(product)}
+      item => `
+        <li class="swiper-slide">
+          ${createDessertCardMarkup(item)}
         </li>
       `
     )
     .join('');
 }
 
-function createBestsellersSwiper(products) {
-  renderBestsellers(products);
+function updatePagination(swiper) {
+  const bullets = swiper.pagination.bullets;
+  const totalBullets = bullets.length;
+  const activeIndex = swiper.realIndex;
 
-  const swiper = new Swiper('.bestsellers__swiper', {
+  if (!totalBullets) {
+    return;
+  }
+
+  if (totalBullets <= VISIBLE_BULLETS) {
+    bullets.forEach((bullet, index) => {
+      bullet.style.transform = `translateX(${index * BULLET_STEP}px)`;
+      bullet.style.visibility = 'visible';
+      bullet.style.opacity = index === activeIndex ? '1' : '0.2';
+    });
+
+    return;
+  }
+
+  let startIndex = activeIndex - Math.floor(VISIBLE_BULLETS / 2);
+
+  startIndex = Math.max(startIndex, 0);
+  startIndex = Math.min(startIndex, totalBullets - VISIBLE_BULLETS);
+
+  bullets.forEach((bullet, index) => {
+    const position = index - startIndex;
+
+    const isVisible =
+      index >= startIndex && index < startIndex + VISIBLE_BULLETS;
+
+    bullet.style.transform = `translateX(${position * BULLET_STEP}px)`;
+
+    bullet.style.visibility = isVisible ? 'visible' : 'hidden';
+
+    bullet.style.opacity = isVisible && index === activeIndex ? '1' : '0.2';
+  });
+}
+
+function createSwiper() {
+  return new Swiper('.bestsellers__swiper .mySwiper', {
     slidesPerView: 1,
-    spaceBetween: 8,
+    spaceBetween: 16,
 
-    dynamicMainBullets: 6,
-
-    speed: 600,
+    loop: false,
 
     pagination: {
-      el: '.bestsellers__dots',
+      el: '.bestsellers__swiper-pagination',
       clickable: true,
+      dynamicBullets: false,
     },
 
     navigation: {
-      nextEl: '.bestsellers-swiper .swiper-button-next',
-      prevEl: '.bestsellers-swiper .swiper-button-prev',
+      nextEl: '.bestsellers__swiper-button-next',
+      prevEl: '.bestsellers__swiper-button-prev',
     },
 
     breakpoints: {
       768: {
         slidesPerView: 2,
-        spaceBetween: 16,
+        spaceBetween: 24,
       },
 
       1440: {
         slidesPerView: 3,
         spaceBetween: 24,
       },
+    },
 
+    on: {
+      init(swiper) {
+        updatePagination(swiper);
+      },
+
+      slideChangeTransitionStart(swiper) {
+        updatePagination(swiper);
+      },
+
+      resize(swiper) {
+        updatePagination(swiper);
+      },
     },
   });
-
-  return swiper;
 }
 
-async function loadBestsellers() {
+function handleProductDetailsClick(event) {
+  const button = event.target.closest('.js-product-details__btn');
+
+  if (!button || !swiperWrapper.contains(button)) {
+    return;
+  }
+
+  const dessertId = button.dataset.id;
+
+  if (!dessertId) {
+    return;
+  }
+
+  openDessertModal(dessertId);
+}
+
+swiperWrapper?.addEventListener('click', handleProductDetailsClick);
+
+async function processBestsellers() {
+  loader?.classList.add('loader');
+
   try {
-    const desserts = await fetchBestsellers();
+    const products = await fetchBestsellers();
 
-    if (!Array.isArray(desserts) || desserts.length === 0) {
-      console.warn(
-        'API повернуло порожній список, використовую демо-дані'
-      );
-
-      createBestsellersSwiper(DEMO_PRODUCTS);
-
+    if (!products || products.length === 0) {
       return;
     }
 
-    createBestsellersSwiper(desserts);
-  } catch (error) {
-    console.warn(
-      'Не вдалося завантажити з API, використовую демо-дані:',
-      error
-    );
+    renderBestsellers(products);
 
-    createBestsellersSwiper(DEMO_PRODUCTS);
+    loader?.classList.remove('loader');
+
+    createSwiper();
+  } catch (error) {
+    loader?.classList.remove('loader');
+
+    showErrorToast(error);
   }
 }
 
-document.addEventListener('DOMContentLoaded', loadBestsellers);
+processBestsellers();

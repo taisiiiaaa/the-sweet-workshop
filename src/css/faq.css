@@ -1,3 +1,7 @@
+.faq {
+  padding-block: 64px;
+}
+
 .faq-heading-title {
   font-family: 'Comfortaa', sans-serif;
   font-weight: 700;
@@ -57,10 +61,6 @@
   transform: rotate(180deg);
 }
 
-.faq-heading {
-  margin-top: 64px;
-}
-
 .ac-panel {
   width: 100%;
   overflow: hidden;
@@ -89,12 +89,8 @@
 
 /* Desktop */
 @media only screen and (min-width: 1440px) {
-  .faq-heading {
-    margin-top: 80px;
-  }
-
-  .faq-heading-title {
-    font-size: 48px;
+  .faq {
+    padding-block: 80px;
   }
 
   .accordion-container {

@@ -58,7 +58,7 @@ document.addEventListener('keydown', event => {
 
 orderBtn?.addEventListener('click', handleOrderBtnClick);
 
-async function openDessertModal(id) {
+export async function openDessertModal(id) {
   if (!modal) {
     return;
   }
