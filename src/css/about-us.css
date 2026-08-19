@@ -4,8 +4,7 @@
 }
 
 .about-us .about-us__container {
-  padding-top: 64px;
-  padding-bottom: 64px;
+  padding-block: 64px;
 }
 
 .about-us .about-us__title {
@@ -133,12 +132,7 @@
 
 @media only screen and (min-width: 1440px) {
   .about-us .about-us__container {
-    padding-top: 80px;
-    padding-bottom: 80px;
-  }
-
-  .about-us .about-us__title {
-    font-size: 48px;
+    padding-block: 80px;
   }
 
   .about-us .about-us__desc {
