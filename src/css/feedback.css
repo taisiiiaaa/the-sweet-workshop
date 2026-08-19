@@ -9,7 +9,7 @@
 }
 
 .feedback .feedback-title {
-  padding-bottom: 24px;
+  margin-bottom: 24px;
   font-family: 'Comfortaa', sans-serif;
   font-weight: 700;
   font-size: 36px;
@@ -20,7 +20,7 @@
 }
 
 .feedback .feedback-subtitle {
-  padding-bottom: 40px;
+  margin-bottom: 40px;
   font-family: 'Work Sans', sans-serif;
   font-weight: 400;
   font-size: 18px;
