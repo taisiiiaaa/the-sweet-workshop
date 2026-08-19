@@ -251,14 +251,13 @@
 
   .order-modal__container {
     width: 768px;
-
     padding: 64px;
   }
 
   .order-modal__title {
     margin-bottom: 48px;
 
-    font-size: 48px;
+    font-size: 40px;
     line-height: 1.2;
   }
 

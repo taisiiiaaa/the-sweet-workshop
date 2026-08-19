@@ -2,6 +2,7 @@ import { getDessertDetails } from './api/dessert-details-api';
 import { showErrorToast } from './toast';
 import { openModal } from './order-modal.js';
 import { getStarsMarkup } from './helpers.js';
+import placeholderImage from '../images/placeholder-image.webp';
 
 const modal = document.querySelector('[data-dessert-details-modal]');
 const closeBtn = document.querySelector('[data-close-dessert-modal]');
@@ -92,8 +93,8 @@ function renderDessertModal(dessert) {
   }
 
   if (modalImage) {
-    modalImage.src = dessert.image || '';
-    modalImage.alt = dessert.name || '';
+    modalImage.src = dessert.image || placeholderImage;
+    modalImage.alt = dessert.name || 'Placeholder image';
   }
 
   if (modalTitle) {

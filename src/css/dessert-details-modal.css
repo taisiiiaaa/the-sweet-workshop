@@ -209,21 +209,14 @@
     flex-direction: row;
     align-items: center;
     gap: 24px;
-
     padding-inline: 64px;
-
     max-width: 1312px;
     width: 100%;
   }
 
   .dessert-modal-image {
-    flex: 0 0 580px;
-
     width: 580px;
-    height: 580px;
-
     max-width: 580px;
-
     object-fit: cover;
   }
 
