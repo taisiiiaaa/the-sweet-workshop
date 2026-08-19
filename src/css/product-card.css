@@ -100,13 +100,17 @@
   background-color: #f19898;
 }
 
+.product__card:hover .js-product-details__btn,
+.product__card:focus .js-product-details__btn {
+  background-color: #f19898;
+}
+
 .js-product-details__btn:active {
   background-color: #c07979;
 }
 
-.product__card:hover .js-product-details__btn,
-.product__card:focus .js-product-details__btn {
-  background-color: #f19898;
+.product__card:hover .js-product-details__btn:active {
+  background-color: #c07979;
 }
 
 .product-details-btn__icon {
