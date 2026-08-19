@@ -40,7 +40,7 @@ function updatePagination(swiper) {
 
   if (totalBullets <= VISIBLE_BULLETS) {
     bullets.forEach((bullet, index) => {
-      bullet.style.transform = `translateX(${index * BULLET_STEP}px)`;
+      bullet.style.left = `${index * BULLET_STEP}px`;
       bullet.style.visibility = 'visible';
       bullet.style.opacity = index === activeIndex ? '1' : '0.2';
     });
@@ -51,19 +51,22 @@ function updatePagination(swiper) {
   let startIndex = activeIndex - Math.floor(VISIBLE_BULLETS / 2);
 
   startIndex = Math.max(startIndex, 0);
-  startIndex = Math.min(startIndex, totalBullets - VISIBLE_BULLETS);
+  startIndex = Math.min(
+    startIndex,
+    totalBullets - VISIBLE_BULLETS
+  );
 
   bullets.forEach((bullet, index) => {
     const position = index - startIndex;
 
     const isVisible =
-      index >= startIndex && index < startIndex + VISIBLE_BULLETS;
+      index >= startIndex &&
+      index < startIndex + VISIBLE_BULLETS;
 
-    bullet.style.transform = `translateX(${position * BULLET_STEP}px)`;
-
+    bullet.style.left = `${position * BULLET_STEP}px`;
     bullet.style.visibility = isVisible ? 'visible' : 'hidden';
-
-    bullet.style.opacity = isVisible && index === activeIndex ? '1' : '0.2';
+    bullet.style.opacity =
+      isVisible && index === activeIndex ? '1' : '0.2';
   });
 }
 
